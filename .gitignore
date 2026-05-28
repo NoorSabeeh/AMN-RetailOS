@@ -1,0 +1,30 @@
+# Secrets / env
+.env
+.env.local
+*.env
+*.local
+
+# Node / frontend
+node_modules/
+dist/
+.npm-cache/
+*.tsbuildinfo
+
+# AMN project portal local files
+project_portal/node_modules/
+project_portal/dist/
+project_portal/.npm-cache/
+project_portal/.env
+project_portal/.env.local
+
+# Temporary interrupted Backend B1 skeleton - do not publish yet
+/src/
+/tests/
+/amn-retailos.sln
+/Directory.Build.props
+/*.csproj
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

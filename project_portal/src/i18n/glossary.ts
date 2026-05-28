@@ -1,0 +1,22 @@
+export const untranslatedTechnicalTerms = [
+  "Backend",
+  "Frontend",
+  "POS",
+  "MVP",
+  "Phase",
+  "Checklist",
+  "Task",
+  "Blocked",
+  "Done",
+  "Next",
+  "GitHub",
+  "Pull Request",
+  "Build",
+  "API",
+  "localStorage",
+  "JSON",
+  "License",
+  "Audit Log",
+  "Sprint",
+  "Supabase"
+];
