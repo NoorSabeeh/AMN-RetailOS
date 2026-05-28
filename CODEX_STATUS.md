@@ -28,6 +28,14 @@ CC-2.2.1 bug-fix pass is applied:
 - Arabic mojibake text is replaced with valid UTF-8 Arabic strings.
 - Checklist updates now apply optimistic local state updates with rollback on save failure, so progress reflects immediately without full page refresh.
 
+CC-2.3 UI/UX workflow upgrade is applied:
+
+- Professional dashboard and team workflow pages are upgraded (Overview, Team Execution, Tasks, Member workspace, Updates, Blockers, Decisions, Docs Hub).
+- Public unauthenticated gate remains active.
+- Supabase table-based sync remains active.
+- Command Center remains internal portal UI only.
+- No secrets are committed.
+
 ## UI Implementation
 
 Handled separately through Claude AI.

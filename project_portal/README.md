@@ -68,6 +68,12 @@ CC-2.2.1 update:
 - Arabic strings are UTF-8 and readable (layout stays LTR).
 - Checklist changes use optimistic UI updates with rollback on failed save.
 
+CC-2.3 workflow/UI update:
+
+- Overview, Team Execution, Tasks, Member workspace, Updates, Blockers, Decisions, and Docs Hub were upgraded for clearer daily workflow.
+- Role-based edit restrictions are preserved (Admin full, Member scoped, Viewer read-only limited routes).
+- Responsive card/table patterns were improved for mobile and narrow screens.
+
 Authenticated behavior:
 
 - Admin: full workspace management

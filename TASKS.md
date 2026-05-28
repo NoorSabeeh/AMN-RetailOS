@@ -34,6 +34,9 @@ This backlog is prioritized for the first production path. P0 is limited to MVP 
 - Validate checklist toggle UX in production: immediate progress update, persisted after reload, and rollback behavior on failed save.
 - Verify viewer route restrictions and member-only edit constraints against Supabase RLS in live testing.
 - Validate mobile/private-browsing behavior for storage-safe fallback and non-crashing sign-in screen.
+- Validate CC-2.3 upgraded workflows on GitHub Pages with real role sessions (Admin, Member, Viewer) and responsive mobile checks.
+- Validate Docs Hub search/filter/copy feedback and GitHub-safe path behavior in production.
+- Validate Team Execution filters (member/phase/status/blocker) and Member workspace update loop in shared Supabase mode.
 - Configure AMN RetailOS Command Center v2.1 Supabase environment only with local `.env` values.
 - Apply the normalized Supabase table schema and confirm `workspace_snapshots` is backup/export only.
 - Review Supabase RLS policies before using shared portal sync with real accounts.
