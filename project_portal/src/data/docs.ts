@@ -14,5 +14,15 @@ export const docsLinks: DocLink[] = [
   { title: "Team Workflow", path: "docs/15_TEAM_WORKFLOW.md", category: "Team", description: "Role workflow and review process." },
   { title: "Field Feedback and QA", path: "docs/16_FIELD_FEEDBACK_AND_QA_PLAN.md", category: "QA", description: "QA and field research preparation." },
   { title: "Acceptance Criteria", path: "docs/19_ACCEPTANCE_CRITERIA.md", category: "QA", description: "MVP acceptance criteria." },
-  { title: "Phase T1 Alignment", path: "docs/21_PHASE_T1_TEAM_ALIGNMENT.md", category: "Phase", description: "Current coordination phase." }
+  { title: "Phase T1 Alignment", path: "docs/21_PHASE_T1_TEAM_ALIGNMENT.md", category: "Phase", description: "Current coordination phase." },
+  { title: "Team Handoff Overview", path: "team/README.md", category: "Team Docs / Team Work Packages", description: "How Telegram, Command Center, GitHub, and Codex work together." },
+  { title: "Noor Work Package", path: "team/NOOR_WORK_PACKAGE.md", category: "Team Docs / Team Work Packages", description: "Product and backend coordination responsibilities and review flow." },
+  { title: "Ali Work Package", path: "team/ALI_WORK_PACKAGE.md", category: "Team Docs / Team Work Packages", description: "Backend/data reading scope, B1 preparation tasks, and validation ideas." },
+  { title: "Mohammed Work Package", path: "team/MOHAMMED_WORK_PACKAGE.md", category: "Team Docs / Team Work Packages", description: "Frontend/UI owner scope, contract alignment, and safe submission rules." },
+  { title: "Murtadha Work Package", path: "team/MURTADHA_WORK_PACKAGE.md", category: "Team Docs / Team Work Packages", description: "UX/QA field feedback scope, test notes, and bug reporting flow." },
+  { title: "Handoff Template", path: "team/HANDOFF_TEMPLATE.md", category: "Team Docs / Team Work Packages", description: "Standard file handoff format for reviews and integration." },
+  { title: "Telegram Update Template", path: "team/TELEGRAM_UPDATE_TEMPLATE.md", category: "Team Docs / Team Work Packages", description: "Daily update, file submission, and bug report message templates." },
+  { title: "File Submission Rules", path: "team/FILE_SUBMISSION_RULES.md", category: "Team Docs / Team Work Packages", description: "Review-first file rules, no overwrite policy, and safety checks." },
+  { title: "AI Prompt Guide", path: "team/AI_PROMPT_GUIDE.md", category: "Team Docs / Team Work Packages", description: "Role-specific AI prompts with scope limits and handoff output format." },
+  { title: "Phase B1 Team Plan", path: "team/PHASE_B1_TEAM_PLAN.md", category: "Team Docs / Team Work Packages", description: "B1 recovery/build-validation plan with role tasks and review gates." }
 ];

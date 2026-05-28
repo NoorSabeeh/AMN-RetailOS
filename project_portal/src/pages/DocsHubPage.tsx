@@ -22,6 +22,33 @@ export function DocsHubPage() {
     });
   }, [data.docsLinks, category, search]);
 
+  const teamDocsByGroup = useMemo(() => {
+    const teamDocs = data.docsLinks.filter((doc) => doc.path.startsWith("team/"));
+    const groups = [
+      { key: "Noor", match: (path: string) => path === "team/NOOR_WORK_PACKAGE.md" },
+      { key: "Ali", match: (path: string) => path === "team/ALI_WORK_PACKAGE.md" },
+      { key: "Mohammed", match: (path: string) => path === "team/MOHAMMED_WORK_PACKAGE.md" },
+      { key: "Murtadha", match: (path: string) => path === "team/MURTADHA_WORK_PACKAGE.md" },
+      {
+        key: "Shared Templates",
+        match: (path: string) =>
+          path === "team/README.md" ||
+          path === "team/HANDOFF_TEMPLATE.md" ||
+          path === "team/TELEGRAM_UPDATE_TEMPLATE.md" ||
+          path === "team/FILE_SUBMISSION_RULES.md" ||
+          path === "team/AI_PROMPT_GUIDE.md" ||
+          path === "team/PHASE_B1_TEAM_PLAN.md"
+      }
+    ] as const;
+
+    return groups
+      .map((group) => ({
+        name: group.key,
+        docs: teamDocs.filter((doc) => group.match(doc.path))
+      }))
+      .filter((group) => group.docs.length > 0);
+  }, [data.docsLinks]);
+
   return (
     <div className="space-y-6">
       <section className="panel p-6">
@@ -48,6 +75,23 @@ export function DocsHubPage() {
           </label>
         </div>
       </section>
+
+      {teamDocsByGroup.length > 0 ? (
+        <section className="panel p-5">
+          <div className="space-y-2">
+            <h3 className="text-xl font-semibold text-white">Team Docs / Team Work Packages</h3>
+            <p className="text-sm text-slate-400">Read your work package first, then use the Telegram update template.</p>
+          </div>
+          <div className="mt-5 space-y-6">
+            {teamDocsByGroup.map((group) => (
+              <div key={group.name} className="space-y-3">
+                <h4 className="text-sm font-semibold tracking-wide text-slate-300">{group.name}</h4>
+                <DocsLinkList docs={group.docs} />
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       {visibleDocs.length === 0 ? <section className="panel p-5 text-sm text-slate-400">{t.emptyDocsState}</section> : <DocsLinkList docs={visibleDocs} />}
     </div>
