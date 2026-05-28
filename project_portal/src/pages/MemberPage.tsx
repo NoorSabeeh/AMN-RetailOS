@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { ProgressBar } from "../components/ProgressBar";
 import { StatusBadge } from "../components/StatusBadge";
@@ -10,6 +11,7 @@ export function MemberPage() {
   const { slug } = useParams();
   const { data, currentUser, updateMember, upsertUpdate } = useWorkspace();
   const { t } = useI18n();
+  const [actionError, setActionError] = useState("");
   const member = data.teamMembers.find((item) => item.slug === slug);
 
   if (!member) {
@@ -24,10 +26,15 @@ export function MemberPage() {
 
   const toggleChecklist = async (id: string) => {
     if (!editable) return;
-    await updateMember({
-      ...member,
-      checklist: member.checklist.map((item) => (item.id === id ? { ...item, completed: !item.completed } : item))
-    });
+    setActionError("");
+    try {
+      await updateMember({
+        ...member,
+        checklist: member.checklist.map((item) => (item.id === id ? { ...item, completed: !item.completed } : item))
+      });
+    } catch (error) {
+      setActionError(error instanceof Error ? error.message : "Unable to save checklist update.");
+    }
   };
 
   const saveUpdate = async (field: "done" | "blocked" | "next" | "notes", value: string) => {
@@ -82,6 +89,7 @@ export function MemberPage() {
             ))}
           </div>
           {!editable ? <p className="mt-3 text-xs text-slate-500">{t.viewerReadOnly}</p> : null}
+          {actionError ? <p className="mt-3 text-sm text-rose-200">{actionError}</p> : null}
         </div>
 
         <div className="rounded-lg border border-white/10 bg-white/[0.045] p-5">

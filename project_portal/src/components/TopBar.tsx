@@ -77,13 +77,13 @@ export function TopBar() {
               onClick={async () => {
                 setSigningIn(true);
                 const error = await signIn(email, password);
-                setAuthMessage(error ?? "Signed in.");
+                setAuthMessage(error ?? t.signInSuccess);
                 setPassword("");
                 setSigningIn(false);
               }}
               className="focus-ring rounded-md border border-white/10 px-3 py-1.5 font-semibold text-slate-200 disabled:opacity-60"
             >
-              {signingIn ? "Signing in..." : "Sign in"}
+              {signingIn ? t.signingIn : t.signInTitle}
             </button>
           </>
         )}

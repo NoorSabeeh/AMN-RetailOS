@@ -62,6 +62,12 @@ Signed-out visitors can only see:
 
 Signed-out visitors cannot see internal workspace data (tasks, checklists, blockers, decisions, member workspaces, docs list, audit data, or internal roadmap details).
 
+CC-2.2.1 update:
+
+- Public page copy is simplified for visitors.
+- Arabic strings are UTF-8 and readable (layout stays LTR).
+- Checklist changes use optimistic UI updates with rollback on failed save.
+
 Authenticated behavior:
 
 - Admin: full workspace management

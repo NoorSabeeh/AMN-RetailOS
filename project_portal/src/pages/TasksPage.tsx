@@ -14,6 +14,7 @@ export function TasksPage() {
   const { data, currentUser, updateTask } = useWorkspace();
   const { t } = useI18n();
   const [query, setQuery] = useState("");
+  const [actionError, setActionError] = useState("");
   const filtered = useMemo(
     () => data.tasks.filter((task) => task.title.toLowerCase().includes(query.toLowerCase()) || task.ownerRole.toLowerCase().includes(query.toLowerCase())),
     [data.tasks, query]
@@ -21,7 +22,12 @@ export function TasksPage() {
 
   const changeTask = async (task: TaskItem, patch: Partial<TaskItem>) => {
     if (!canEditTask(currentUser, task)) return;
-    await updateTask({ ...task, ...patch });
+    setActionError("");
+    try {
+      await updateTask({ ...task, ...patch });
+    } catch (error) {
+      setActionError(error instanceof Error ? error.message : "Unable to save task update.");
+    }
   };
 
   const toggleChecklist = async (task: TaskItem, itemId: string) => {
@@ -43,6 +49,7 @@ export function TasksPage() {
           placeholder="Search tasks or roles"
           className="focus-ring mt-4 w-full max-w-md rounded-md border border-white/10 bg-ink-950 p-3 text-sm text-slate-200"
         />
+        {actionError ? <p className="mt-3 text-sm text-rose-200">{actionError}</p> : null}
       </section>
 
       {priorities.map((priority) => {

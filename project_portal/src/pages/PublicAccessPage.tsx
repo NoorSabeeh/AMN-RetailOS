@@ -18,7 +18,7 @@ export function PublicAccessPage() {
     const error = await signIn(email.trim(), password);
     setSigningIn(false);
     setPassword("");
-    setAuthMessage(error ?? "Signed in.");
+    setAuthMessage(error ?? t.signInSuccess);
   };
 
   return (
@@ -27,9 +27,8 @@ export function PublicAccessPage() {
         <div className="rounded-lg border border-white/10 bg-white/[0.045] p-6 shadow-soft">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amn-cyan">{t.internalPortal}</p>
           <h1 className="mt-3 text-3xl font-semibold text-white">{t.portalName}</h1>
-          <p className="mt-3 text-sm leading-6 text-slate-300">
-            {t.portalBoundary}
-          </p>
+          <p className="mt-3 text-sm leading-6 text-slate-300">{t.publicPortalDescription}</p>
+          <p className="mt-2 text-sm text-slate-400">{t.publicPortalSignInHelp}</p>
           <p className="mt-2 text-sm text-slate-400">{t.assignedAccountsOnly}</p>
         </div>
 
@@ -82,11 +81,13 @@ export function PublicAccessPage() {
         </div>
 
         <div className="rounded-lg border border-amber-300/20 bg-amber-300/10 p-5">
-          <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-amber-100">{t.publicSafetyNotice}</h2>
+          <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-amber-100">{t.connectionStatus}</h2>
           <ul className="mt-3 space-y-2 text-sm text-amber-50/90">
             <li>{t.unauthenticatedGateNote}</li>
-            <li>Supabase sync mode: {isSupabaseConfigured ? "configured" : "not configured"}.</li>
-            <li>{t.secretsNotice}</li>
+            <li>
+              {t.supabase}: {isSupabaseConfigured ? t.connected : t.notConfigured}
+            </li>
+            <li>{t.publicSignupDisabled}</li>
           </ul>
         </div>
       </div>

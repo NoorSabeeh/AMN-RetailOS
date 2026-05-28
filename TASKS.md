@@ -30,6 +30,8 @@ This backlog is prioritized for the first production path. P0 is limited to MVP 
 
 - Review AMN RetailOS Command Center in `project_portal/`.
 - Validate CC-2.2 public access gate in production (signed-out, Admin, Member, Viewer sessions).
+- Validate CC-2.2.1 Arabic text rendering on GitHub Pages (no mojibake in PublicAccess, TopBar, Sidebar, Overview, and action buttons).
+- Validate checklist toggle UX in production: immediate progress update, persisted after reload, and rollback behavior on failed save.
 - Verify viewer route restrictions and member-only edit constraints against Supabase RLS in live testing.
 - Validate mobile/private-browsing behavior for storage-safe fallback and non-crashing sign-in screen.
 - Configure AMN RetailOS Command Center v2.1 Supabase environment only with local `.env` values.

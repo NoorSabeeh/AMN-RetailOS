@@ -156,10 +156,25 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
       notifications: [notification, ...nextData.notifications].slice(0, 100)
     };
 
-    await adapter.saveWorkspace(withMeta);
+    const previousData = data;
+    const previousLastSave = lastSave;
+    const previousConflict = conflictWarning;
+
     setData(withMeta);
     setLastSave(timestamp);
     setConflictWarning("");
+
+    try {
+      await adapter.saveWorkspace(withMeta);
+      setError("");
+    } catch (saveError) {
+      setData(previousData);
+      setLastSave(previousLastSave);
+      setConflictWarning(previousConflict);
+      const message = saveError instanceof Error ? saveError.message : "Save failed.";
+      setError(message);
+      throw saveError;
+    }
   };
 
   const value = useMemo<WorkspaceContextValue>(

@@ -22,6 +22,12 @@ Command Center v2.1 is a table-based Supabase workspace for internal portal auth
 
 CC-2.2 public hardening is applied: unauthenticated access is gated to a public-safe sign-in screen and internal workspace pages are hidden until authenticated. No secrets are committed. Supabase table-based sync remains active when configured.
 
+CC-2.2.1 bug-fix pass is applied:
+
+- Public sign-in page copy is cleaned for visitors and no longer shows developer-only security implementation details.
+- Arabic mojibake text is replaced with valid UTF-8 Arabic strings.
+- Checklist updates now apply optimistic local state updates with rollback on save failure, so progress reflects immediately without full page refresh.
+
 ## UI Implementation
 
 Handled separately through Claude AI.
