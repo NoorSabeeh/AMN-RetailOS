@@ -6,7 +6,13 @@ Project Foundation Planning
 
 ## Current Active Coordination Phase
 
-Phase T1 - Team Alignment & Work Preparation
+TEAM-1 - AMN Team Handoff System + Member Work Packages
+
+## Current Main Product Phase
+
+Backend Foundation B1 - Recovery, Build Validation, and Architecture Lock.
+
+Backend B1 remains blocked until the .NET SDK is installed and build/test validation succeeds. Do not mark B1 complete until the backend can build, tests can run, and migration validation can be performed.
 
 ## Product Implementation
 
@@ -35,6 +41,8 @@ CC-2.3 UI/UX workflow upgrade is applied:
 - Supabase table-based sync remains active.
 - Command Center remains internal portal UI only.
 - No secrets are committed.
+
+The Command Center is stable enough for team coordination and should be used with Telegram Topics and GitHub as documented in `team/`.
 
 ## UI Implementation
 
@@ -75,10 +83,13 @@ Documentation and planning foundation:
 - Root README, agent guidance, status, and task backlog
 - Phase T1 team alignment and work preparation documents
 - Internal project portal v2.1 for table-based shared team tracking
+- TEAM-1 handoff system in `team/`
+- Member work packages and Telegram submission templates
+- File submission rules for Codex review and safe integration
 
 ## Next Recommended Phase
 
-Phase T1 completion, then one of:
+Complete TEAM-1 handoff adoption, then one of:
 
 - Claude UI Planning Phase U1
 - Backend Foundation Phase B1 after .NET SDK is installed
@@ -95,3 +106,10 @@ Portal validation should confirm:
 - Backend B1 remains blocked, not complete.
 - No AMN RetailOS POS product screens are implemented in the portal.
 - Source documents remain unchanged.
+
+TEAM-1 validation confirms:
+
+- no product runtime code was changed by the handoff setup,
+- Telegram plus internal website workflow is documented,
+- submitted member files require Codex review before integration,
+- B1 is not marked complete.

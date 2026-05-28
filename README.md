@@ -27,6 +27,7 @@ This repository currently contains the planning foundation for:
 - Claude AI UI handoff
 - Draft API/service contracts
 - Team workflow
+- Team handoff system
 - Field feedback and QA plan
 - Risk matrix
 - 30/90 day plan
@@ -62,10 +63,32 @@ Start with:
 - `docs/19_ACCEPTANCE_CRITERIA.md`
 - `TASKS.md`
 - `CODEX_STATUS.md`
+- `TEAM_ASSIGNMENTS.md`
+- `team/README.md`
 
 ## Development Principle
 
 Build backend correctness first. Inventory, invoices, payments, returns, debt, shifts, audit logs, backup/restore, and license status must be reliable before expanding into additional store profiles.
+
+## Team Handoff System
+
+`team/` contains the TEAM-1 handoff system for AMN TEAM.
+
+The team workflow is:
+
+- Telegram Topics for daily updates, questions, file submissions, and bug reports.
+- Internal Command Center for shared project status, progress, tasks, blockers, and updates.
+- GitHub as the official source of truth.
+- Codex for review, comparison, validation, and controlled integration.
+
+Files submitted through Telegram are not official until reviewed. Codex should compare submitted files with the current repository and avoid direct overwrites.
+
+Start with:
+
+- `team/README.md`
+- `team/PHASE_B1_TEAM_PLAN.md`
+- `team/HANDOFF_TEMPLATE.md`
+- `team/FILE_SUBMISSION_RULES.md`
 
 ## Internal Project Portal
 
@@ -93,3 +116,5 @@ npm run build
 ```
 
 Supabase setup instructions are in `project_portal/README.md`. Backend Foundation B1 remains blocked until the .NET SDK is installed and validated separately.
+
+The current main product phase is Backend Foundation B1 - Recovery, Build Validation, and Architecture Lock. This is preparation and validation work, not full product implementation. No product runtime code is changed by the TEAM-1 handoff system.

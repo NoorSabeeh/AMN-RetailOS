@@ -4,6 +4,11 @@ This backlog is prioritized for the first production path. P0 is limited to MVP 
 
 ## P0: MVP Foundation and Backend Correctness
 
+- Adopt TEAM-1 handoff workflow before Backend B1 resumes.
+- Each member reads the assigned work package in `team/`.
+- Use Telegram Done/Blocked/Next updates and file submission templates.
+- Confirm .NET SDK readiness before backend implementation resumes.
+- Codex must compare member submissions with GitHub before merging.
 - Freeze MVP scope around Retail/Grocery and basic Wholesale/Grocery.
 - Select backend/runtime architecture for a local-first Windows laptop application.
 - Define initial database schema from the conceptual schema.
