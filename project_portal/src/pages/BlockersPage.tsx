@@ -9,8 +9,9 @@ export function BlockersPage() {
   const { t } = useI18n();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [ownerSlug, setOwnerSlug] = useState("ali");
+  const [ownerSlug, setOwnerSlug] = useState(currentUser.role === "member" ? currentUser.slug : "ali");
   const canEdit = canEditProjectData(currentUser) || currentUser.role === "member";
+  const canChooseOwner = canEditProjectData(currentUser);
 
   const addBlocker = async () => {
     if (!title.trim()) return;
@@ -44,7 +45,7 @@ export function BlockersPage() {
         <h3 className="font-semibold text-white">{t.addBlocker}</h3>
         <div className="mt-4 grid gap-4 md:grid-cols-3">
           <input value={title} onChange={(event) => setTitle(event.target.value)} placeholder={t.title} disabled={!canEdit} className="focus-ring rounded-md border border-white/10 bg-ink-950 p-3 text-sm text-slate-200 disabled:opacity-60" />
-          <select value={ownerSlug} onChange={(event) => setOwnerSlug(event.target.value)} disabled={!canEdit} className="focus-ring rounded-md border border-white/10 bg-ink-950 p-3 text-sm text-slate-200 disabled:opacity-60">
+          <select value={ownerSlug} onChange={(event) => setOwnerSlug(event.target.value)} disabled={!canEdit || !canChooseOwner} className="focus-ring rounded-md border border-white/10 bg-ink-950 p-3 text-sm text-slate-200 disabled:opacity-60">
             {data.teamMembers.map((member) => (
               <option key={member.slug} value={member.slug}>
                 {member.name} - {member.role}
@@ -71,7 +72,7 @@ export function BlockersPage() {
                 <StatusBadge status={blocker.status === "open" ? "blocked" : "completed"} />
               </div>
               <p className="mt-3 text-sm leading-6 text-slate-300">{blocker.description}</p>
-              {blocker.status === "open" && canEdit ? (
+              {blocker.status === "open" && (canEditProjectData(currentUser) || blocker.ownerSlug === currentUser.slug) ? (
                 <button
                   onClick={() =>
                     void upsertBlocker({

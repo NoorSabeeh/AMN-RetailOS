@@ -18,6 +18,7 @@ export function OverviewPage() {
   const blockerCount = blockers.filter((blocker) => blocker.status === "open").length;
   const currentPhase = phases.find((phase) => phase.id === data.settings.currentPhaseId) ?? phases.find((phase) => phase.status === "active");
   const nextPhase = phases.find((phase) => phase.id === "phase-u1");
+  const viewerMode = currentUser.role === "viewer";
   const memberStates = Object.fromEntries(
     teamMembers.map((member) => [
       member.slug,
@@ -59,9 +60,11 @@ export function OverviewPage() {
           <Link to="/team-execution" className="focus-ring rounded-md border border-white/10 px-4 py-2 text-sm font-semibold text-white">
             {t.teamExecutionDashboard}
           </Link>
-          <button onClick={exportSnapshot} className="focus-ring rounded-md border border-white/10 px-4 py-2 text-sm font-semibold text-white">
-            {t.exportSnapshotJson}
-          </button>
+          {viewerMode ? null : (
+            <button onClick={exportSnapshot} className="focus-ring rounded-md border border-white/10 px-4 py-2 text-sm font-semibold text-white">
+              {t.exportSnapshotJson}
+            </button>
+          )}
         </div>
         {conflictWarning ? <p className="mt-4 rounded-md border border-amber-300/30 bg-amber-300/10 p-3 text-sm text-amber-100">{conflictWarning}</p> : null}
       </section>
@@ -81,35 +84,51 @@ export function OverviewPage() {
         <StatCard label={t.b1State} value="Blocked" detail="Do not mark Backend B1 complete." />
       </section>
 
-      <section className="grid gap-6 xl:grid-cols-[1.4fr_0.8fr]">
-        {currentPhase ? <PhaseCard phase={currentPhase} /> : null}
-        <div className="space-y-4">
-          <h2 className="text-xl font-semibold text-white">{t.topRisks}</h2>
-          {risks.slice(0, 3).map((risk) => (
-            <RiskCard key={risk.title} risk={risk} />
-          ))}
-        </div>
-      </section>
+      {viewerMode ? (
+        <section className="rounded-lg border border-white/10 bg-white/[0.045] p-5">
+          <h2 className="text-xl font-semibold text-white">Viewer Summary</h2>
+          <p className="mt-3 text-sm leading-6 text-slate-300">
+            Viewer access is intentionally limited in this public deployment. Use assigned member accounts for internal tasks, blockers, updates, docs, and audit workflow pages.
+          </p>
+          <p className="mt-3 text-sm text-slate-400">
+            Current phase: {currentPhase?.name ?? "N/A"}.
+          </p>
+        </section>
+      ) : null}
 
-      {currentPhase ? (
+      {viewerMode ? null : (
+        <section className="grid gap-6 xl:grid-cols-[1.4fr_0.8fr]">
+          {currentPhase ? <PhaseCard phase={currentPhase} /> : null}
+          <div className="space-y-4">
+            <h2 className="text-xl font-semibold text-white">{t.topRisks}</h2>
+            {risks.slice(0, 3).map((risk) => (
+              <RiskCard key={risk.title} risk={risk} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {currentPhase && !viewerMode ? (
         <section className="space-y-4">
           <h2 className="text-xl font-semibold text-white">{t.dynamicPhaseMemberProgress}</h2>
           <PhaseMemberProgressTable members={teamMembers} memberStates={memberStates} blockers={blockers} phaseId={currentPhase.id} />
         </section>
       ) : null}
 
-      <section className="rounded-lg border border-white/10 bg-white/[0.045] p-5">
-        <h2 className="text-xl font-semibold text-white">{t.latestUpdates}</h2>
-        <div className="mt-4 grid gap-3 md:grid-cols-2">
-          {updates.slice(0, 4).map((update) => (
-            <article key={update.id} className="rounded-md bg-ink-950/60 p-4">
-              <h3 className="font-semibold text-white">{update.title}</h3>
-              <p className="mt-1 text-xs text-slate-500">{update.role} - {update.date}</p>
-              <p className="mt-2 text-sm text-slate-300">{update.next || update.notes}</p>
-            </article>
-          ))}
-        </div>
-      </section>
+      {viewerMode ? null : (
+        <section className="rounded-lg border border-white/10 bg-white/[0.045] p-5">
+          <h2 className="text-xl font-semibold text-white">{t.latestUpdates}</h2>
+          <div className="mt-4 grid gap-3 md:grid-cols-2">
+            {updates.slice(0, 4).map((update) => (
+              <article key={update.id} className="rounded-md bg-ink-950/60 p-4">
+                <h3 className="font-semibold text-white">{update.title}</h3>
+                <p className="mt-1 text-xs text-slate-500">{update.role} - {update.date}</p>
+                <p className="mt-2 text-sm text-slate-300">{update.next || update.notes}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="rounded-lg border border-white/10 bg-white/[0.045] p-5">
         <h2 className="text-xl font-semibold text-white">{t.nextRecommendedPhase}</h2>

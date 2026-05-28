@@ -29,6 +29,9 @@ This backlog is prioritized for the first production path. P0 is limited to MVP 
 ## P1: Business Safety and Pilot Readiness
 
 - Review AMN RetailOS Command Center in `project_portal/`.
+- Validate CC-2.2 public access gate in production (signed-out, Admin, Member, Viewer sessions).
+- Verify viewer route restrictions and member-only edit constraints against Supabase RLS in live testing.
+- Validate mobile/private-browsing behavior for storage-safe fallback and non-crashing sign-in screen.
 - Configure AMN RetailOS Command Center v2.1 Supabase environment only with local `.env` values.
 - Apply the normalized Supabase table schema and confirm `workspace_snapshots` is backup/export only.
 - Review Supabase RLS policies before using shared portal sync with real accounts.

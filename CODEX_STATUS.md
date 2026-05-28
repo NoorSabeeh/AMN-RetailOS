@@ -20,6 +20,8 @@ The portal is separate from the future AMN RetailOS product frontend. It does no
 
 Command Center v2.1 is a table-based Supabase workspace for internal portal auth/sync only. `workspace_snapshots` is not primary sync and is reserved for optional backup/export/debug snapshots. Supabase requires local environment setup and real keys must not be committed. If Supabase is not configured, the portal runs in local fallback mode and clearly shows that shared sync is inactive.
 
+CC-2.2 public hardening is applied: unauthenticated access is gated to a public-safe sign-in screen and internal workspace pages are hidden until authenticated. No secrets are committed. Supabase table-based sync remains active when configured.
+
 ## UI Implementation
 
 Handled separately through Claude AI.

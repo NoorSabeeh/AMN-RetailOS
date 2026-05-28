@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { ar } from "./ar";
 import { en } from "./en";
+import { safeGetItem, safeSetItem } from "../lib/safeStorage";
 
 type Language = "en" | "ar";
 type Dictionary = typeof en;
@@ -13,7 +14,7 @@ const I18nContext = createContext<{
 } | null>(null);
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>(() => (window.localStorage.getItem("amn.language") === "ar" ? "ar" : "en"));
+  const [language, setLanguageState] = useState<Language>(() => (safeGetItem("amn.language") === "ar" ? "ar" : "en"));
   const direction: "ltr" = "ltr";
 
   useEffect(() => {
@@ -22,7 +23,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   }, [language]);
 
   const setLanguage = (next: Language) => {
-    window.localStorage.setItem("amn.language", next);
+    safeSetItem("amn.language", next);
     setLanguageState(next);
   };
 

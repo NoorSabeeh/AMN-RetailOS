@@ -15,26 +15,42 @@ import { TasksPage } from "./pages/TasksPage";
 import { TeamExecutionPage } from "./pages/TeamExecutionPage";
 import { TeamPage } from "./pages/TeamPage";
 import { UpdatesPage } from "./pages/UpdatesPage";
+import { PublicAccessPage } from "./pages/PublicAccessPage";
+import { useWorkspace } from "./context/WorkspaceContext";
 
 export default function App() {
+  const { adapter, currentUser } = useWorkspace();
+  const publicGithubHost = typeof window !== "undefined" && window.location.hostname.endsWith("github.io");
+  const supabaseSignedIn = adapter.mode === "supabase" && currentUser.authMode === "supabase";
+  const isSupabasePublicVisitor = adapter.mode === "supabase" && !supabaseSignedIn;
+  const isViewer = supabaseSignedIn && currentUser.role === "viewer";
+
+  if (isSupabasePublicVisitor || (publicGithubHost && adapter.mode === "local")) {
+    return <PublicAccessPage />;
+  }
+
   return (
     <Routes>
       <Route element={<AppLayout />}>
         <Route index element={<OverviewPage />} />
         <Route path="/roadmap" element={<RoadmapPage />} />
-        <Route path="/team" element={<TeamPage />} />
-        <Route path="/team-execution" element={<TeamExecutionPage />} />
-        <Route path="/team/:slug" element={<MemberPage />} />
-        <Route path="/tasks" element={<TasksPage />} />
-        <Route path="/phase-t1" element={<PhaseT1Page />} />
         <Route path="/backend-b1-blocker" element={<BackendB1BlockerPage />} />
-        <Route path="/docs" element={<DocsHubPage />} />
-        <Route path="/updates" element={<UpdatesPage />} />
-        <Route path="/blockers" element={<BlockersPage />} />
-        <Route path="/decisions" element={<DecisionsPage />} />
-        <Route path="/audit" element={<AuditPage />} />
         <Route path="/health" element={<SetupHealthPage />} />
         <Route path="/github-readiness" element={<GitHubReadinessPage />} />
+        {isViewer ? null : (
+          <>
+            <Route path="/team" element={<TeamPage />} />
+            <Route path="/team-execution" element={<TeamExecutionPage />} />
+            <Route path="/team/:slug" element={<MemberPage />} />
+            <Route path="/tasks" element={<TasksPage />} />
+            <Route path="/phase-t1" element={<PhaseT1Page />} />
+            <Route path="/docs" element={<DocsHubPage />} />
+            <Route path="/updates" element={<UpdatesPage />} />
+            <Route path="/blockers" element={<BlockersPage />} />
+            <Route path="/decisions" element={<DecisionsPage />} />
+            <Route path="/audit" element={<AuditPage />} />
+          </>
+        )}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>

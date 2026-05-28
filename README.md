@@ -75,6 +75,8 @@ This portal is not the AMN RetailOS product UI. It does not implement POS, cashi
 
 Command Center v2.1 supports Supabase table-based shared sync/auth when configured through local environment variables. `workspace_snapshots` is not the primary sync model; it is reserved for optional backup/export/debug snapshots. If Supabase is not configured, the portal runs in local fallback mode and does not claim shared sync is active. Real Supabase keys, passwords, private keys, and license secrets must never be committed.
 
+CC-2.2 hardening adds a public access gate for GitHub Pages: signed-out visitors are limited to a safe login screen and cannot view internal workspace data.
+
 Run locally:
 
 ```bash

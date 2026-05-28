@@ -143,28 +143,32 @@ export function UpdatesPage() {
               <UpdateBlock title={t.notes} value={update.notes} />
             </div>
             <div className="mt-4 flex flex-wrap gap-2">
-              <button
-                onClick={() =>
-                  setForm({
-                    id: update.id,
-                    date: update.date,
-                    title: update.title,
-                    memberSlug: update.memberSlug ?? "noor",
-                    phase: update.phase,
-                    done: update.done,
-                    blocked: update.blocked,
-                    next: update.next,
-                    notes: update.notes,
-                    tags: update.tags.join(", ")
-                  })
-                }
-                className="focus-ring rounded-md border border-white/10 px-3 py-1.5 text-xs font-semibold text-white"
-              >
-                {t.edit}
-              </button>
-              <button onClick={() => void deleteUpdate(update.id)} className="focus-ring rounded-md border border-rose-300/30 px-3 py-1.5 text-xs font-semibold text-rose-100">
-                {t.delete}
-              </button>
+              {currentUser.role === "admin" || update.memberSlug === currentUser.slug ? (
+                <button
+                  onClick={() =>
+                    setForm({
+                      id: update.id,
+                      date: update.date,
+                      title: update.title,
+                      memberSlug: update.memberSlug ?? "noor",
+                      phase: update.phase,
+                      done: update.done,
+                      blocked: update.blocked,
+                      next: update.next,
+                      notes: update.notes,
+                      tags: update.tags.join(", ")
+                    })
+                  }
+                  className="focus-ring rounded-md border border-white/10 px-3 py-1.5 text-xs font-semibold text-white"
+                >
+                  {t.edit}
+                </button>
+              ) : null}
+              {currentUser.role === "admin" || update.memberSlug === currentUser.slug ? (
+                <button onClick={() => void deleteUpdate(update.id)} className="focus-ring rounded-md border border-rose-300/30 px-3 py-1.5 text-xs font-semibold text-rose-100">
+                  {t.delete}
+                </button>
+              ) : null}
               <span className="text-xs text-slate-500">Last updated {new Date(update.updatedAt).toLocaleString()}</span>
             </div>
           </article>

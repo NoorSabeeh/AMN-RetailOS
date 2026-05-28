@@ -1,4 +1,4 @@
-import { localUsers, useWorkspace } from "../context/WorkspaceContext";
+﻿import { localUsers, useWorkspace } from "../context/WorkspaceContext";
 import { useI18n } from "../i18n/I18nProvider";
 import { permissionSummary } from "../services/access";
 import { useState } from "react";
@@ -9,6 +9,8 @@ export function TopBar() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [authMessage, setAuthMessage] = useState("");
+  const [signingIn, setSigningIn] = useState(false);
+  const isSupabaseSignedIn = adapter.mode === "supabase" && currentUser.authMode === "supabase";
 
   return (
     <header className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 bg-ink-950/70 px-5 py-4 backdrop-blur">
@@ -31,7 +33,7 @@ export function TopBar() {
           aria-label={t.language}
         >
           <option value="en">English</option>
-          <option value="ar">العربية</option>
+          <option value="ar">{"\u0627\u0644\u0639\u0631\u0628\u064a\u0629"}</option>
         </select>
         {adapter.mode === "local" ? (
           <select
@@ -46,6 +48,15 @@ export function TopBar() {
               </option>
             ))}
           </select>
+        ) : isSupabaseSignedIn ? (
+          <div className="flex items-center gap-2">
+            <span className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-slate-300">
+              {currentUser.name} - {currentUser.roleLabel}
+            </span>
+            <button onClick={() => void signOut()} className="focus-ring rounded-md border border-white/10 px-3 py-1.5 font-semibold text-slate-200">
+              Sign out
+            </button>
+          </div>
         ) : (
           <>
             <input
@@ -62,17 +73,17 @@ export function TopBar() {
               className="focus-ring w-32 rounded-md border border-white/10 bg-ink-950 px-3 py-1.5 text-slate-200"
             />
             <button
+              disabled={signingIn}
               onClick={async () => {
+                setSigningIn(true);
                 const error = await signIn(email, password);
                 setAuthMessage(error ?? "Signed in.");
                 setPassword("");
+                setSigningIn(false);
               }}
-              className="focus-ring rounded-md border border-white/10 px-3 py-1.5 font-semibold text-slate-200"
+              className="focus-ring rounded-md border border-white/10 px-3 py-1.5 font-semibold text-slate-200 disabled:opacity-60"
             >
-              Sign in
-            </button>
-            <button onClick={() => void signOut()} className="focus-ring rounded-md border border-white/10 px-3 py-1.5 font-semibold text-slate-200">
-              Sign out
+              {signingIn ? "Signing in..." : "Sign in"}
             </button>
           </>
         )}
@@ -85,3 +96,5 @@ export function TopBar() {
     </header>
   );
 }
+
+

@@ -1,24 +1,30 @@
 import { NavLink } from "react-router-dom";
 import { useI18n } from "../i18n/I18nProvider";
+import { useWorkspace } from "../context/WorkspaceContext";
 
 export function Sidebar() {
   const { t } = useI18n();
+  const { currentUser } = useWorkspace();
+  const viewerMode = currentUser.role === "viewer";
   const navItems = [
     { to: "/", label: t.overview },
     { to: "/roadmap", label: t.roadmap },
+    { to: "/backend-b1-blocker", label: t.b1Blocker },
+    { to: "/health", label: t.health },
+    { to: "/github-readiness", label: t.github }
+  ];
+  const internalNavItems = [
     { to: "/team-execution", label: t.execution },
     { to: "/team", label: t.team },
     { to: "/tasks", label: t.tasks },
     { to: "/phase-t1", label: t.phaseT1 },
-    { to: "/backend-b1-blocker", label: t.b1Blocker },
     { to: "/docs", label: t.docs },
     { to: "/updates", label: t.updates },
     { to: "/blockers", label: t.blockers },
     { to: "/decisions", label: t.decisions },
-    { to: "/audit", label: t.audit },
-    { to: "/health", label: t.health },
-    { to: "/github-readiness", label: t.github }
+    { to: "/audit", label: t.audit }
   ];
+  const items = viewerMode ? navItems : [...navItems.slice(0, 2), ...internalNavItems, ...navItems.slice(2)];
 
   return (
     <aside className="border-r border-white/10 bg-ink-950/95 p-4 lg:sticky lg:top-0 lg:h-screen">
@@ -29,7 +35,7 @@ export function Sidebar() {
       </div>
 
       <nav className="mt-6 space-y-1">
-        {navItems.map((item) => (
+        {items.map((item) => (
           <NavLink
             key={item.to}
             to={item.to}

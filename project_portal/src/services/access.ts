@@ -19,5 +19,5 @@ export function permissionSummary(user: CurrentUser) {
   if (user.role === "member") {
     return "Member can update own workspace, own checklists, own notes, and tasks assigned to their role.";
   }
-  return "Viewer can read approved overview, roadmap, docs, and progress data only.";
+  return "Viewer can read overview and roadmap summaries only. Viewer cannot edit workspace data.";
 }

@@ -1,6 +1,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { seedWorkspaceData } from "../data/seed";
 import { createSupabaseBrowserClient } from "../lib/supabase";
+import { safeGetItem, safeParseJson, safeRemoveItem, safeSetItem } from "../lib/safeStorage";
 import { getSignedInPortalUser, signInWithAssignedAccount, signOutAssignedAccount } from "./authService";
 import { deleteTableRecord, loadWorkspaceFromTables, saveWorkspaceToTables, subscribeToWorkspaceTables } from "./supabaseTableService";
 import type { CurrentUser, SyncMode, WorkspaceData } from "../types/portal";
@@ -29,19 +30,15 @@ export function createLocalWorkspaceAdapter(): WorkspaceAdapter {
     mode: "local",
     isConfigured: false,
     async loadWorkspace() {
-      const stored = window.localStorage.getItem(workspaceKey);
+      const stored = safeGetItem(workspaceKey);
       if (!stored) {
         return seedWorkspaceData;
       }
 
-      try {
-        return mergeSeed(JSON.parse(stored) as Partial<WorkspaceData>);
-      } catch {
-        return seedWorkspaceData;
-      }
+      return mergeSeed(safeParseJson<Partial<WorkspaceData>>(stored, {}));
     },
     async saveWorkspace(data) {
-      window.localStorage.setItem(workspaceKey, JSON.stringify(data));
+      safeSetItem(workspaceKey, JSON.stringify(data));
     },
     async deleteRecord() {
       return;
@@ -50,11 +47,11 @@ export function createLocalWorkspaceAdapter(): WorkspaceAdapter {
       return { user: null, error: "Supabase is not configured. Use the local role selector for fallback testing." };
     },
     async signOut() {
-      window.localStorage.removeItem("amn.local.currentUser");
+      safeRemoveItem("amn.local.currentUser");
     },
     async getCurrentUser() {
-      const stored = window.localStorage.getItem("amn.local.currentUser");
-      return stored ? (JSON.parse(stored) as CurrentUser) : null;
+      const stored = safeGetItem("amn.local.currentUser");
+      return stored ? safeParseJson<CurrentUser | null>(stored, null) : null;
     },
     subscribe() {
       return undefined;

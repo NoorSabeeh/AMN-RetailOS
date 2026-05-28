@@ -49,6 +49,27 @@ Command Center v2.1 uses normalized Supabase tables as the primary shared data m
 
 Local fallback mode is still supported when Supabase env values are missing. In fallback mode, workspace data stays in this browser only and shared sync is not active.
 
+## Public Access Gate (CC-2.2)
+
+This repository is deployed publicly on GitHub Pages, so unauthenticated visitors are gated to a public-safe sign-in screen.
+
+Signed-out visitors can only see:
+
+- Command Center title and portal boundary note
+- Assigned-account sign-in form
+- Supabase setup/sync status note
+- Public safety notice
+
+Signed-out visitors cannot see internal workspace data (tasks, checklists, blockers, decisions, member workspaces, docs list, audit data, or internal roadmap details).
+
+Authenticated behavior:
+
+- Admin: full workspace management
+- Member: own assigned workspace/task updates plus shared read access
+- Viewer: limited read-only overview routes
+
+The signed-out Supabase state never simulates Admin.
+
 ## Environment
 
 Copy `.env.example` to `.env` locally and fill real values outside Git.
@@ -62,6 +83,8 @@ VITE_REPO_BRANCH=main
 ```
 
 Never commit `.env`, `.env.local`, real Supabase keys, passwords, private keys, license secrets, or fake credentials.
+
+`service_role` keys must never be used in frontend code.
 
 ## Supabase SQL Setup
 
@@ -117,3 +140,7 @@ Configure `VITE_REPO_BASE_URL`, `VITE_REPO_RAW_BASE_URL`, and `VITE_REPO_BRANCH`
 ## GitHub Pages
 
 The Vite build uses relative asset paths via `--base=./`, so the static frontend remains GitHub Pages friendly. Supabase shared sync can work from any static host when env values are provided at build time. Deployment is not configured by this repository.
+
+## Storage Safety
+
+The portal uses safe storage wrappers for browser storage access (`localStorage`/`sessionStorage`) to avoid runtime crashes in restricted environments (for example, private browsing modes with blocked storage).

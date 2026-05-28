@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { seedWorkspaceData } from "../data/seed";
+import { safeSetItem } from "../lib/safeStorage";
 import { createWorkspaceAdapter, type WorkspaceAdapter } from "../services/workspaceAdapter";
 import type {
   AuditEvent,
@@ -49,6 +50,19 @@ const localUsers: CurrentUser[] = [
 
 const WorkspaceContext = createContext<WorkspaceContextValue | null>(null);
 const signedOutSupabaseUser = localUsers.find((user) => user.slug === "viewer") ?? localUsers[4];
+const publicWorkspaceData: WorkspaceData = {
+  ...seedWorkspaceData,
+  phases: [],
+  teamMembers: [],
+  tasks: [],
+  docsLinks: [],
+  blockers: [],
+  updates: [],
+  decisions: [],
+  phaseTransitions: [],
+  auditEvents: [],
+  notifications: []
+};
 
 export function WorkspaceProvider({ children }: { children: ReactNode }) {
   const [adapter] = useState(() => createWorkspaceAdapter());
@@ -63,15 +77,27 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
   const refresh = async () => {
     try {
       setLoading(true);
-      const [workspace, user] = await Promise.all([adapter.loadWorkspace(), adapter.getCurrentUser()]);
-      setData(workspace);
-      if (user) {
+      if (adapter.isConfigured) {
+        const user = await adapter.getCurrentUser();
+        if (!user) {
+          setData(publicWorkspaceData);
+          setCurrentUser(signedOutSupabaseUser);
+          setError("");
+          return;
+        }
+        const workspace = await adapter.loadWorkspace();
+        setData(workspace);
         setCurrentUser(user);
-      } else if (adapter.isConfigured) {
-        setCurrentUser(signedOutSupabaseUser);
+      } else {
+        const workspace = await adapter.loadWorkspace();
+        setData(workspace);
       }
       setError("");
     } catch (refreshError) {
+      if (adapter.isConfigured) {
+        setData(publicWorkspaceData);
+        setCurrentUser(signedOutSupabaseUser);
+      }
       setError(refreshError instanceof Error ? refreshError.message : "Unable to load workspace data.");
     } finally {
       setLoading(false);
@@ -92,7 +118,7 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
 
   const setLocalUser = (slug: string) => {
     const next = localUsers.find((user) => user.slug === slug) ?? localUsers[0];
-    window.localStorage.setItem("amn.local.currentUser", JSON.stringify(next));
+    safeSetItem("amn.local.currentUser", JSON.stringify(next));
     setCurrentUser(next);
   };
 
@@ -151,12 +177,19 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
         const result = await adapter.signIn(email, password);
         if (result.user) {
           setCurrentUser(result.user);
+          await refresh();
         }
         return result.error;
       },
       signOut: async () => {
         await adapter.signOut();
-        setCurrentUser(adapter.isConfigured ? signedOutSupabaseUser : localUsers[0]);
+        if (adapter.isConfigured) {
+          setData(publicWorkspaceData);
+          setCurrentUser(signedOutSupabaseUser);
+        } else {
+          setCurrentUser(localUsers[0]);
+        }
+        setConflictWarning("");
       },
       refresh,
       saveData,
