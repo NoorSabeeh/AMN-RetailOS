@@ -12,7 +12,7 @@ TEAM-1 - AMN Team Handoff System + Member Work Packages
 
 Backend Foundation B1 - Recovery, Build Validation, and Architecture Lock.
 
-Backend B1 remains blocked until the .NET SDK is installed and build/test validation succeeds. Do not mark B1 complete until the backend can build, tests can run, and migration validation can be performed.
+The .NET SDK blocker is resolved. Initial `dotnet restore`, `dotnet build`, and foundational `dotnet test` validation now pass for the admitted backend skeleton. Do not mark B1 complete until architecture lock, domain split, and meaningful backend implementation validation are completed.
 
 ## Product Implementation
 
@@ -54,9 +54,9 @@ Current Codex output includes a Claude UI handoff document only. No final AMN Re
 
 Blocked.
 
-Backend Foundation Phase B1 is blocked until the .NET SDK is installed. Do not mark B1 as complete until build, test, and migration validation can run successfully.
+Backend Foundation Phase B1 is not complete. Build/test tooling is now operational, but implementation work remains pending.
 
-Current Codex output includes backend architecture, conceptual schema, rules, and service contract planning. A prior interrupted B1 attempt created partial backend skeleton files, but B1 is not complete and should not continue until the SDK blocker is resolved.
+Current Codex output includes backend architecture, conceptual schema, rules, service contract planning, and a minimally validated backend skeleton (`src/`, `tests/`, `amn-retailos.sln`, `Directory.Build.props`) ready for source-control admission.
 
 ## Current Output
 
@@ -92,18 +92,18 @@ Documentation and planning foundation:
 Complete TEAM-1 handoff adoption, then one of:
 
 - Claude UI Planning Phase U1
-- Backend Foundation Phase B1 after .NET SDK is installed
+- Backend Foundation Phase B1 architecture lock and foundational domain/test split
 - Field Research/QA Preparation
 
 ## Tests
 
-Backend build/test/migration validation is blocked until the .NET SDK is installed.
+Backend build/test command validation is available and currently green for the skeleton.
 
 Portal validation should confirm:
 
 - Supabase env values are not committed.
 - Local fallback mode works when Supabase is missing.
-- Backend B1 remains blocked, not complete.
+- Backend B1 is not complete.
 - No AMN RetailOS POS product screens are implemented in the portal.
 - Source documents remain unchanged.
 
@@ -113,3 +113,10 @@ TEAM-1 validation confirms:
 - Telegram plus internal website workflow is documented,
 - submitted member files require Codex review before integration,
 - B1 is not marked complete.
+
+B1-R1.2 validation confirms:
+
+- backend skeleton files are now trackable for Git admission,
+- `.NET` source ignores are scoped to `bin/` and `obj/` outputs,
+- foundational architecture/reference tests pass,
+- no product runtime feature implementation was added.

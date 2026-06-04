@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\AMN.RetailOS.Domain\AMN.RetailOS.Domain.csproj" />
+  </ItemGroup>
+</Project>

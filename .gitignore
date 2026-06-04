@@ -17,12 +17,15 @@ project_portal/.npm-cache/
 project_portal/.env
 project_portal/.env.local
 
-# Temporary interrupted Backend B1 skeleton - do not publish yet
-/src/
-/tests/
-/amn-retailos.sln
-/Directory.Build.props
-/*.csproj
+# .NET build output and local artifacts
+bin/
+obj/
+.vs/
+TestResults/
+coverage/
+*.user
+*.suo
+*.nupkg
 
 # Protected source reference kept local only
 deep-research-report.md
