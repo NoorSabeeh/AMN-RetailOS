@@ -1,5 +1,8 @@
 using System.Xml.Linq;
-using AMN.RetailOS.Domain;
+using AMN.RetailOS.Domain.Common;
+using AMN.RetailOS.Domain.Inventory;
+using AMN.RetailOS.Domain.Store;
+using AMN.RetailOS.Infrastructure.Data;
 using Xunit;
 
 namespace AMN.RetailOS.Tests;
@@ -30,21 +33,23 @@ public sealed class FoundationalSkeletonTests
     }
 
     [Fact]
-    public void DomainProjectDoesNotReferenceApiOrInfrastructure()
+    public void DomainProjectDoesNotReferenceApplicationApiOrInfrastructure()
     {
         var references = ReadProjectReferenceIncludes(Path.Combine(RepoRoot, "src", "AMN.RetailOS.Domain", "AMN.RetailOS.Domain.csproj"));
 
+        Assert.DoesNotContain(references, r => ContainsSegment(r, "AMN.RetailOS.Application"));
         Assert.DoesNotContain(references, r => ContainsSegment(r, "AMN.RetailOS.Api"));
         Assert.DoesNotContain(references, r => ContainsSegment(r, "AMN.RetailOS.Infrastructure"));
     }
 
     [Fact]
-    public void ApplicationProjectReferencesDomainOnlyAndNotApi()
+    public void ApplicationProjectReferencesDomainOnlyAndNotApiOrInfrastructure()
     {
         var references = ReadProjectReferenceIncludes(Path.Combine(RepoRoot, "src", "AMN.RetailOS.Application", "AMN.RetailOS.Application.csproj"));
 
         Assert.Contains(references, r => ContainsSegment(r, "AMN.RetailOS.Domain"));
         Assert.DoesNotContain(references, r => ContainsSegment(r, "AMN.RetailOS.Api"));
+        Assert.DoesNotContain(references, r => ContainsSegment(r, "AMN.RetailOS.Infrastructure"));
     }
 
     [Fact]
@@ -55,6 +60,47 @@ public sealed class FoundationalSkeletonTests
         Assert.Contains(references, r => ContainsSegment(r, "AMN.RetailOS.Application"));
         Assert.Contains(references, r => ContainsSegment(r, "AMN.RetailOS.Domain"));
         Assert.DoesNotContain(references, r => ContainsSegment(r, "AMN.RetailOS.Api"));
+    }
+
+    [Fact]
+    public void ApiProjectMayReferenceApplicationAndInfrastructureAsCompositionRoot()
+    {
+        var references = ReadProjectReferenceIncludes(Path.Combine(RepoRoot, "src", "AMN.RetailOS.Api", "AMN.RetailOS.Api.csproj"));
+
+        Assert.Contains(references, r => ContainsSegment(r, "AMN.RetailOS.Application"));
+        Assert.Contains(references, r => ContainsSegment(r, "AMN.RetailOS.Infrastructure"));
+    }
+
+    [Fact]
+    public void DomainModelIsSplitIntoFocusedFolders()
+    {
+        var domainRoot = Path.Combine(RepoRoot, "src", "AMN.RetailOS.Domain");
+        var sourceFiles = Directory
+            .EnumerateFiles(domainRoot, "*.cs", SearchOption.AllDirectories)
+            .Where(path => !path.Contains($"{Path.DirectorySeparatorChar}bin{Path.DirectorySeparatorChar}", StringComparison.OrdinalIgnoreCase))
+            .Where(path => !path.Contains($"{Path.DirectorySeparatorChar}obj{Path.DirectorySeparatorChar}", StringComparison.OrdinalIgnoreCase))
+            .ToArray();
+
+        var relativeFolders = sourceFiles
+            .Select(path => Path.GetRelativePath(domainRoot, Path.GetDirectoryName(path)!))
+            .Where(folder => folder != ".")
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+
+        Assert.True(sourceFiles.Length >= 10);
+        Assert.Contains("Common", relativeFolders);
+        Assert.Contains("Catalog", relativeFolders);
+        Assert.Contains("Inventory", relativeFolders);
+        Assert.Contains("Sales", relativeFolders);
+        Assert.Contains("Store", relativeFolders);
+    }
+
+    [Fact]
+    public void DbContextSkeletonExistsWithoutMigrations()
+    {
+        Assert.Equal("AMN.RetailOS.Infrastructure", typeof(RetailOSDbContext).Assembly.GetName().Name);
+        Assert.True(File.Exists(Path.Combine(RepoRoot, "src", "AMN.RetailOS.Infrastructure", "Data", "RetailOSDbContext.cs")));
+        Assert.False(Directory.Exists(Path.Combine(RepoRoot, "src", "AMN.RetailOS.Infrastructure", "Migrations")));
     }
 
     private static string FindRepoRoot()

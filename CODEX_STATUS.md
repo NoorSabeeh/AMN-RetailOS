@@ -120,3 +120,11 @@ B1-R1.2 validation confirms:
 - `.NET` source ignores are scoped to `bin/` and `obj/` outputs,
 - foundational architecture/reference tests pass,
 - no product runtime feature implementation was added.
+
+B1-R1.3 architecture lock pass is completed:
+
+- the monolithic Domain entity file was split into focused domain folders and namespaces,
+- a minimal EF Core `RetailOSDbContext` skeleton was added for existing entities only,
+- no migrations, seed data, runtime database creation, or connection strings were added,
+- restore, build, and foundational test validation pass,
+- B1 is still not complete and meaningful product feature implementation has not started.

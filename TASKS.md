@@ -12,6 +12,8 @@ This backlog is prioritized for the first production path. P0 is limited to MVP 
 - Add backend skeleton (`src/`, `tests/`, `amn-retailos.sln`, `Directory.Build.props`) to tracked source control.
 - Keep .NET source ignore rules scoped to `bin/`, `obj/`, and local IDE artifacts only.
 - Keep foundational skeleton tests green (restore/build/test) before continuing B1 implementation.
+- Complete B1-R1.3 architecture split: Domain folders, DbContext skeleton, no migrations.
+- Continue B1 with controlled architecture lock and foundational domain/test split before product features.
 - Freeze MVP scope around Retail/Grocery and basic Wholesale/Grocery.
 - Select backend/runtime architecture for a local-first Windows laptop application.
 - Define initial database schema from the conceptual schema.

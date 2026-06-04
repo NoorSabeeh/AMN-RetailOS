@@ -1,4 +1,4 @@
-namespace AMN.RetailOS.Domain;
+namespace AMN.RetailOS.Domain.Common;
 
 public static class StoreProfileCodes
 {
