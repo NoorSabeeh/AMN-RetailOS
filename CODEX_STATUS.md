@@ -6,7 +6,7 @@ Project Foundation Planning
 
 ## Current Active Coordination Phase
 
-DEMO-7-P1 - Cosmetics Pilot Implementation Plan, Workstreams, and Build Gates
+DEMO-7-G0+D1 - Scope Lock + Backend/Core Contracts and Demo Data Model Start
 
 ## Current Main Product Phase
 
@@ -43,6 +43,20 @@ DEMO-7-P1 implementation plan is created:
 - Backend/Core ownership is split between Noor and Ali,
 - build gates define acceptance criteria and stop conditions,
 - next step is implementation start only after planning approval.
+
+DEMO-7-G0+D1 status:
+
+- Gate 0 scope lock is documented in `docs/24_DEMO_7_IMPLEMENTATION_PLAN.md`.
+- Backend/Core contracts and demo data model baseline are started.
+- Domain model baseline includes generic DEMO-7 concepts without making the backend cosmetics-only.
+- Application contract baseline includes platform-neutral DTOs for shared Windows, Android, and future iPhone clients.
+- Noor is the primary hands-on backend architect/builder.
+- Ali is backend/data co-builder.
+- Major backend/API/database/business-rule decisions require Noor approval before merge.
+- No Windows, Android, or iPhone app projects are created.
+- No database migrations are added.
+- Restore/build/test validation passes for the current baseline.
+- B1 remains not complete and B1-R1.4 remains paused temporarily.
 
 ## Internal Project Portal
 
@@ -114,6 +128,7 @@ Documentation and planning foundation:
 - DEMO-7 cosmetics pilot replan in `docs/22_DEMO_7_COSMETICS_PILOT_REPLAN.md`
 - DEMO-7 framework decision in `docs/23_DEMO_7_FRAMEWORK_DECISION.md`
 - DEMO-7 implementation plan in `docs/24_DEMO_7_IMPLEMENTATION_PLAN.md`
+- DEMO-7-G0+D1 backend/model/contracts baseline
 - File submission rules for Codex review and safe integration
 
 ## Next Recommended Phase

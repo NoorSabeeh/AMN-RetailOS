@@ -58,6 +58,45 @@ The pilot should be demo-ready when the team can walk through a realistic mercha
 11. Show audit summary for price/status/order changes.
 12. Show dashboard/report summaries.
 
+## Gate 0 Scope Lock
+
+Status: locked for DEMO-7-G0+D1 implementation start.
+
+Included implementation scope:
+
+- users and simple permissions,
+- products,
+- variants/shades,
+- product images,
+- expiry/lot awareness,
+- multiple warehouses,
+- display/showroom location,
+- inventory movements,
+- incoming shipments,
+- reservations,
+- customers,
+- delivery orders,
+- delivery company barcode per order,
+- COD collection report,
+- basic sales with price override,
+- audit trail basics,
+- dashboard/report summaries.
+
+Explicitly postponed:
+
+- native iPhone implementation,
+- App Store / TestFlight / iOS signing,
+- advanced archive engine,
+- advanced reports,
+- full accounting,
+- full returns/refunds,
+- production printer integration,
+- full RBAC engine,
+- local/hybrid sync implementation,
+- database migrations,
+- Windows app project,
+- Android app project.
+
 ## Explicitly Postponed
 
 The following are not part of this implementation plan:

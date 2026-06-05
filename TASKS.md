@@ -19,8 +19,8 @@ These tasks are urgent planning and pilot preparation items. Do not mark them co
 
 ### DEMO-7 Build Gates
 
-- Gate 0 - Scope Lock.
-- Gate 1 - Backend Contract Baseline.
+- Gate 0 - Scope Lock: completed for DEMO-7-G0+D1.
+- Gate 1 - Backend Contract Baseline: started with generic domain model and Application DTO contracts.
 - Gate 2 - Cloud-connected Demo Path.
 - Gate 3 - Windows Demo Shell Plan.
 - Gate 4 - Android Demo Shell Plan.
@@ -29,9 +29,8 @@ These tasks are urgent planning and pilot preparation items. Do not mark them co
 
 ### DEMO-7 Next Planning/Implementation Tasks
 
-- Prepare Gate 0 scope lock note.
-- Draft Gate 1 minimum DTO/API contracts.
-- Draft DEMO-7 data model details without migrations.
+- Review Gate 1 DTO/API contract baseline with Noor + Ali.
+- Extend Gate 1 only after Noor approval for backend/API/database/business-rule decisions.
 - Select conceptual cloud-connected pilot data path without credentials.
 - Plan Windows WinUI shell screens without creating a project.
 - Plan Android Kotlin shell workflows without creating a project.
@@ -52,6 +51,14 @@ These tasks are urgent planning and pilot preparation items. Do not mark them co
 - Define audit trail for price, status, and order state changes.
 - Define dashboard/report summaries for the demo.
 - Define QA merchant demo flow and feedback checklist.
+
+### DEMO-7-G0+D1 Backend/Core Baseline
+
+- Gate 0 scope lock documented.
+- Generic DEMO-7 domain model baseline started without cosmetics-only design.
+- Application DTO contract baseline started for shared Windows, Android, and future iPhone consumers.
+- DbContext skeleton aligned with new model entities without migrations.
+- API metadata/status route may exist only as a safe placeholder and must not claim working product features.
 
 ## Temporary Pause
 

@@ -12,6 +12,12 @@ public static class EntityStatuses
     public const string Inactive = "inactive";
 }
 
+public static class LocationTypes
+{
+    public const string Warehouse = "warehouse";
+    public const string Display = "display";
+}
+
 public static class DocumentStatuses
 {
     public const string Draft = "draft";
@@ -25,6 +31,10 @@ public static class DocumentStatuses
     public const string Canceled = "canceled";
     public const string Returned = "returned";
     public const string Reversed = "reversed";
+    public const string Expected = "expected";
+    public const string Arrived = "arrived";
+    public const string Reserved = "reserved";
+    public const string Released = "released";
 }
 
 public static class InventoryMovementTypes
@@ -43,8 +53,31 @@ public static class InventoryMovementTypes
 public static class PaymentMethods
 {
     public const string Cash = "cash";
+    public const string CashOnDelivery = "cash_on_delivery";
     public const string Debt = "debt";
     public const string Mixed = "mixed";
+}
+
+public static class ReservationSourceTypes
+{
+    public const string AvailableStock = "available_stock";
+    public const string IncomingShipment = "incoming_shipment";
+}
+
+public static class DeliveryOrderStatuses
+{
+    public const string Draft = "draft";
+    public const string Prepared = "prepared";
+    public const string WithDeliveryCompany = "with_delivery_company";
+    public const string Delivered = "delivered";
+    public const string Canceled = "canceled";
+}
+
+public static class CodCollectionStatuses
+{
+    public const string Pending = "pending";
+    public const string Collected = "collected";
+    public const string Reconciled = "reconciled";
 }
 
 public static class LedgerEntryTypes

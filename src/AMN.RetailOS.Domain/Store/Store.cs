@@ -2,8 +2,17 @@ using AMN.RetailOS.Domain.Common;
 
 namespace AMN.RetailOS.Domain.Store;
 
+public sealed class Organization : Entity
+{
+    public string Name { get; set; } = string.Empty;
+    public string CurrencyCode { get; set; } = "IQD";
+    public string Status { get; set; } = EntityStatuses.Active;
+}
+
 public sealed class Store : Entity
 {
+    public Guid? OrganizationId { get; set; }
+    public Organization? Organization { get; set; }
     public string Name { get; set; } = string.Empty;
     public string CurrencyCode { get; set; } = "IQD";
     public string Language { get; set; } = "ar";

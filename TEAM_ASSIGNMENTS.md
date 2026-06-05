@@ -24,6 +24,9 @@ Execution planning model:
 - Workstreams and build gates, not fixed daily task counts.
 - Backend/Core is shared by Noor and Ali.
 - Implementation starts only after planning approval.
+- Noor is the primary hands-on backend architect/builder.
+- Ali is backend/data co-builder.
+- Major backend/API/database/business-rule decisions require Noor approval before merge.
 
 ## Coordination Tools
 
@@ -59,6 +62,7 @@ Execution planning model:
 ### Temporary DEMO-7 Responsibilities
 
 - Backend/core architecture with Ali.
+- Hands-on backend building for approved DEMO-7 slices.
 - Product decisions for the cosmetics pilot.
 - Windows direction using WinUI 3 + Windows App SDK + .NET.
 - iPhone target decision later.
@@ -92,6 +96,7 @@ Execution planning model:
 ### Temporary DEMO-7 Responsibilities
 
 - Backend/core partnership with Noor.
+- Backend/data co-building for approved DEMO-7 slices.
 - Android direction using Kotlin + Jetpack Compose.
 - Data/import support.
 - Cosmetics workflow data questions.

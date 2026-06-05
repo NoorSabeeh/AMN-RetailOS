@@ -30,6 +30,33 @@ public sealed class Product : Entity
     public bool AllowNegativeStock { get; set; }
     public string Status { get; set; } = EntityStatuses.Active;
     public ICollection<ProductBarcode> Barcodes { get; set; } = new List<ProductBarcode>();
+    public ICollection<ProductVariant> Variants { get; set; } = new List<ProductVariant>();
+    public ICollection<ProductImage> Images { get; set; } = new List<ProductImage>();
+}
+
+public sealed class ProductVariant : Entity
+{
+    public Guid ProductId { get; set; }
+    public Product Product { get; set; } = null!;
+    public string Name { get; set; } = string.Empty;
+    public string OptionName { get; set; } = "shade";
+    public string OptionValue { get; set; } = string.Empty;
+    public string SkuSuffix { get; set; } = string.Empty;
+    public string Status { get; set; } = EntityStatuses.Active;
+    public ICollection<ProductImage> Images { get; set; } = new List<ProductImage>();
+}
+
+public sealed class ProductImage : Entity
+{
+    public Guid ProductId { get; set; }
+    public Product Product { get; set; } = null!;
+    public Guid? ProductVariantId { get; set; }
+    public ProductVariant? ProductVariant { get; set; }
+    public string FileName { get; set; } = string.Empty;
+    public string ContentType { get; set; } = string.Empty;
+    public string StoragePath { get; set; } = string.Empty;
+    public bool IsPrimary { get; set; }
+    public string Status { get; set; } = EntityStatuses.Active;
 }
 
 public sealed class ProductBarcode : Entity

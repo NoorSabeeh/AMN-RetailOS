@@ -15,6 +15,7 @@ namespace AMN.RetailOS.Infrastructure.Data;
 
 public sealed class RetailOSDbContext(DbContextOptions<RetailOSDbContext> options) : DbContext(options)
 {
+    public DbSet<Organization> Organizations => Set<Organization>();
     public DbSet<Store> Stores => Set<Store>();
     public DbSet<StoreSetting> StoreSettings => Set<StoreSetting>();
     public DbSet<StoreProfile> StoreProfiles => Set<StoreProfile>();
@@ -29,13 +30,20 @@ public sealed class RetailOSDbContext(DbContextOptions<RetailOSDbContext> option
     public DbSet<Category> Categories => Set<Category>();
     public DbSet<Unit> Units => Set<Unit>();
     public DbSet<Product> Products => Set<Product>();
+    public DbSet<ProductVariant> ProductVariants => Set<ProductVariant>();
+    public DbSet<ProductImage> ProductImages => Set<ProductImage>();
     public DbSet<ProductBarcode> ProductBarcodes => Set<ProductBarcode>();
     public DbSet<ProductUnitConversion> ProductUnitConversions => Set<ProductUnitConversion>();
     public DbSet<PriceList> PriceLists => Set<PriceList>();
 
+    public DbSet<Location> Locations => Set<Location>();
+    public DbSet<StockLot> StockLots => Set<StockLot>();
     public DbSet<InventoryMovement> InventoryMovements => Set<InventoryMovement>();
     public DbSet<StockCount> StockCounts => Set<StockCount>();
     public DbSet<StockCountLine> StockCountLines => Set<StockCountLine>();
+    public DbSet<IncomingShipment> IncomingShipments => Set<IncomingShipment>();
+    public DbSet<IncomingShipmentLine> IncomingShipmentLines => Set<IncomingShipmentLine>();
+    public DbSet<Reservation> Reservations => Set<Reservation>();
 
     public DbSet<InvoiceSequence> InvoiceSequences => Set<InvoiceSequence>();
     public DbSet<Sale> Sales => Set<Sale>();
@@ -43,6 +51,9 @@ public sealed class RetailOSDbContext(DbContextOptions<RetailOSDbContext> option
     public DbSet<Invoice> Invoices => Set<Invoice>();
     public DbSet<Payment> Payments => Set<Payment>();
     public DbSet<IdempotencyKey> IdempotencyKeys => Set<IdempotencyKey>();
+    public DbSet<DeliveryOrder> DeliveryOrders => Set<DeliveryOrder>();
+    public DbSet<DeliveryBarcode> DeliveryBarcodes => Set<DeliveryBarcode>();
+    public DbSet<CODCollection> CODCollections => Set<CODCollection>();
 
     public DbSet<Customer> Customers => Set<Customer>();
     public DbSet<CustomerAccount> CustomerAccounts => Set<CustomerAccount>();
@@ -69,6 +80,7 @@ public sealed class RetailOSDbContext(DbContextOptions<RetailOSDbContext> option
     {
         modelBuilder.Entity<UserRole>().HasKey(userRole => new { userRole.UserId, userRole.RoleId });
 
+        modelBuilder.Entity<Organization>().ToTable("organizations");
         modelBuilder.Entity<Store>().ToTable("stores");
         modelBuilder.Entity<StoreSetting>().ToTable("store_settings");
         modelBuilder.Entity<StoreProfile>().ToTable("store_profiles");
@@ -83,13 +95,20 @@ public sealed class RetailOSDbContext(DbContextOptions<RetailOSDbContext> option
         modelBuilder.Entity<Category>().ToTable("categories");
         modelBuilder.Entity<Unit>().ToTable("units");
         modelBuilder.Entity<Product>().ToTable("products");
+        modelBuilder.Entity<ProductVariant>().ToTable("product_variants");
+        modelBuilder.Entity<ProductImage>().ToTable("product_images");
         modelBuilder.Entity<ProductBarcode>().ToTable("product_barcodes");
         modelBuilder.Entity<ProductUnitConversion>().ToTable("product_unit_conversions");
         modelBuilder.Entity<PriceList>().ToTable("price_lists");
 
+        modelBuilder.Entity<Location>().ToTable("locations");
+        modelBuilder.Entity<StockLot>().ToTable("stock_lots");
         modelBuilder.Entity<InventoryMovement>().ToTable("inventory_movements");
         modelBuilder.Entity<StockCount>().ToTable("stock_counts");
         modelBuilder.Entity<StockCountLine>().ToTable("stock_count_lines");
+        modelBuilder.Entity<IncomingShipment>().ToTable("incoming_shipments");
+        modelBuilder.Entity<IncomingShipmentLine>().ToTable("incoming_shipment_lines");
+        modelBuilder.Entity<Reservation>().ToTable("reservations");
 
         modelBuilder.Entity<InvoiceSequence>().ToTable("invoice_sequences");
         modelBuilder.Entity<Sale>().ToTable("sales");
@@ -97,6 +116,9 @@ public sealed class RetailOSDbContext(DbContextOptions<RetailOSDbContext> option
         modelBuilder.Entity<Invoice>().ToTable("invoices");
         modelBuilder.Entity<Payment>().ToTable("payments");
         modelBuilder.Entity<IdempotencyKey>().ToTable("idempotency_keys");
+        modelBuilder.Entity<DeliveryOrder>().ToTable("delivery_orders");
+        modelBuilder.Entity<DeliveryBarcode>().ToTable("delivery_barcodes");
+        modelBuilder.Entity<CODCollection>().ToTable("cod_collections");
 
         modelBuilder.Entity<Customer>().ToTable("customers");
         modelBuilder.Entity<CustomerAccount>().ToTable("customer_accounts");
