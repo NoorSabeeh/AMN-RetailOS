@@ -9,6 +9,8 @@ The first production scope is intentionally focused:
 
 The project is currently in Project Foundation Planning. Product implementation has not started.
 
+Current temporary planning overlay: REPLAN-DEMO-7 Cosmetics Pilot. See `docs/22_DEMO_7_COSMETICS_PILOT_REPLAN.md`.
+
 ## Current Output
 
 This repository currently contains the planning foundation for:
@@ -34,6 +36,7 @@ This repository currently contains the planning foundation for:
 - Acceptance criteria
 - Decision log
 - Internal project tracking portal in `project_portal/`
+- DEMO-7 cosmetics pilot replan
 
 ## Scope Guard
 
@@ -69,6 +72,8 @@ Start with:
 ## Development Principle
 
 Build backend correctness first. Inventory, invoices, payments, returns, debt, shifts, audit logs, backup/restore, and license status must be reliable before expanding into additional store profiles.
+
+DEMO-7 is a temporary urgent pilot planning sprint for a cosmetics merchant. It pauses B1-R1.4 planning temporarily but does not cancel the local-first strategy, does not choose a final framework, and does not implement product features.
 
 ## Team Handoff System
 

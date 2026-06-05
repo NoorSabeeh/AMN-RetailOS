@@ -57,3 +57,43 @@ Decision: The first project task creates planning and coordination documentation
 Reason: The team needs scope, architecture, workflow, contracts, and acceptance criteria before implementation.
 
 Status: accepted.
+
+## Decision 008: DEMO-7 Cosmetics Pilot Accepted As Urgent Temporary Sprint
+
+Decision: AMN RetailOS will temporarily pause deeper B1-R1.4 planning to document a 7-day cosmetics merchant pilot.
+
+Reason: A real cosmetics merchant can provide early feedback on products, variants, images, locations, delivery orders, COD, reservations, import, and reporting needs.
+
+Status: accepted.
+
+## Decision 009: Local / Cloud / Hybrid Deployment Modes
+
+Decision: AMN RetailOS must plan for Local-first Mode, Cloud-connected Mode, and future Hybrid Mode.
+
+Reason: Local-first remains necessary for reliable store selling, while some businesses need multi-device, Instagram sales, delivery workflow, and remote access capabilities.
+
+Status: accepted for planning.
+
+## Decision 010: iPhone Native Build Decision Postponed
+
+Decision: Native iPhone build and distribution decisions are postponed.
+
+Reason: DEMO-7 should not be blocked by App Store, TestFlight, or native iPhone delivery decisions. Windows and Android are higher priority for the pilot.
+
+Status: accepted.
+
+## Decision 011: Future Profiles Are Architecture Awareness Only
+
+Decision: Future Business Profiles are documented to guide architecture, but they are not implementation scope now.
+
+Reason: The product needs to avoid overbuilding while preserving a path for Retail, Wholesale Specialty, Medical, Education, Manufacturing, Service, and Custom profiles.
+
+Status: accepted.
+
+## Decision 012: Wholesale Includes Specialty Profiles
+
+Decision: Wholesale is not one fixed type; it includes specialty wholesale profiles such as perfumes/cosmetics, watches/accessories, gifts/decor, kitchenware/homeware, raw materials, electricals, clothing/fashion, food/grocery, and general wholesale.
+
+Reason: Specialty wholesalers have different product, import, pricing, reservation, and reporting needs.
+
+Status: accepted for planning.

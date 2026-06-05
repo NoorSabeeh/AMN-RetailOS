@@ -6,7 +6,11 @@ Current main product phase:
 
 Backend Foundation B1 - Recovery, Build Validation, and Architecture Lock.
 
-B1 is not complete. It remains blocked until the .NET SDK is installed and build/test validation succeeds.
+B1 is not complete. The B1-R1.3 checkpoint is green, but B1-R1.4 is paused temporarily while DEMO-7 cosmetics pilot planning and framework decision work is documented.
+
+Temporary active planning overlay:
+
+REPLAN-DEMO-7 - Cosmetics Pilot Planning.
 
 ## Coordination Tools
 
@@ -39,6 +43,14 @@ B1 is not complete. It remains blocked until the .NET SDK is installed and build
 - reviewed member handoffs
 - next recommended Codex action
 
+### Temporary DEMO-7 Responsibilities
+
+- Backend/core architecture direction.
+- Product decisions for the cosmetics pilot.
+- Windows direction.
+- iPhone target decision later.
+- Final DEMO-7 scope control before implementation starts.
+
 ## Ali - Backend/Data Owner
 
 ### Assigned Responsibilities
@@ -62,6 +74,14 @@ B1 is not complete. It remains blocked until the .NET SDK is installed and build
 - backend setup notes
 - schema and migration questions
 - B1 validation/test idea list
+
+### Temporary DEMO-7 Responsibilities
+
+- Backend partnership.
+- Android direction.
+- Data/import support.
+- Cosmetics workflow data questions.
+- Pilot validation support.
 
 ## Mohammed - Frontend/UI Owner
 
@@ -87,6 +107,12 @@ B1 is not complete. It remains blocked until the .NET SDK is installed and build
 - Arabic/RTL UI concern notes
 - frontend handoff summary
 
+### Temporary DEMO-7 Responsibilities
+
+- Paused for now.
+- May assist UI polish later if requested.
+- Do not start full POS or product UI implementation without approval.
+
 ## Murtadha - UX/QA/Field Feedback Owner
 
 ### Assigned Responsibilities
@@ -110,6 +136,17 @@ B1 is not complete. It remains blocked until the .NET SDK is installed and build
 - bug report examples
 - field feedback checklist
 - hardware/printer and Arabic/RTL test notes
+
+### Temporary DEMO-7 Responsibilities
+
+- QA/testing.
+- Merchant feedback collection.
+- Cosmetics workflow validation.
+- Demo scenario checks.
+
+## Temporary UI Responsibility For DEMO-7
+
+UI planning for the temporary cosmetics pilot is shared between Noor and Ali, with Mohammed optional later for UI polish if approved.
 
 ## Deadline Format
 

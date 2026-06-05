@@ -6,7 +6,7 @@ Project Foundation Planning
 
 ## Current Active Coordination Phase
 
-TEAM-1 - AMN Team Handoff System + Member Work Packages
+REPLAN-DEMO-7 - Business Profiles, Deployment Modes, and Cosmetics Pilot Scope
 
 ## Current Main Product Phase
 
@@ -14,9 +14,19 @@ Backend Foundation B1 - Recovery, Build Validation, and Architecture Lock.
 
 The .NET SDK blocker is resolved. Initial `dotnet restore`, `dotnet build`, and foundational `dotnet test` validation now pass for the admitted backend skeleton. Do not mark B1 complete until architecture lock, domain split, and meaningful backend implementation validation are completed.
 
+B1-R1.3 is a green checkpoint:
+
+- Domain model files were split into focused folders/namespaces.
+- A minimal `RetailOSDbContext` skeleton exists without migrations.
+- `dotnet restore`, `dotnet build`, and `dotnet test` passed with foundational tests.
+
+B1-R1.4 is paused temporarily while DEMO-7 cosmetics pilot planning and framework decision work are documented.
+
 ## Product Implementation
 
 Not started.
+
+The REPLAN-DEMO-7 update is documentation only. No product feature, app UI, backend runtime behavior, migration, cloud configuration, or framework decision has been implemented by this replan.
 
 ## Internal Project Portal
 
@@ -85,11 +95,16 @@ Documentation and planning foundation:
 - Internal project portal v2.1 for table-based shared team tracking
 - TEAM-1 handoff system in `team/`
 - Member work packages and Telegram submission templates
+- DEMO-7 cosmetics pilot replan in `docs/22_DEMO_7_COSMETICS_PILOT_REPLAN.md`
 - File submission rules for Codex review and safe integration
 
 ## Next Recommended Phase
 
-Complete TEAM-1 handoff adoption, then one of:
+Next immediate step:
+
+- DEMO-7 framework decision.
+
+After DEMO-7 planning is resolved, continue one of:
 
 - Claude UI Planning Phase U1
 - Backend Foundation Phase B1 architecture lock and foundational domain/test split
@@ -128,3 +143,13 @@ B1-R1.3 architecture lock pass is completed:
 - no migrations, seed data, runtime database creation, or connection strings were added,
 - restore, build, and foundational test validation pass,
 - B1 is still not complete and meaningful product feature implementation has not started.
+
+REPLAN-DEMO-7 status:
+
+- active documentation/planning phase,
+- B1-R1.4 paused temporarily,
+- cosmetics pilot scope documented as urgent temporary sprint,
+- Local-first, Cloud-connected, and Hybrid deployment modes documented for planning,
+- iPhone native build/distribution decision postponed,
+- Windows and Android treated as higher-priority pilot targets,
+- framework remains undecided.

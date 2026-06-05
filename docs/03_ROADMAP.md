@@ -2,6 +2,26 @@
 
 The roadmap keeps AMN RetailOS focused on backend correctness before expanding into specialized store profiles.
 
+## Urgent Temporary Sprint: DEMO-7 Cosmetics Pilot
+
+DEMO-7 is an urgent temporary planning sprint before continuing deeper B1 implementation.
+
+Purpose:
+
+- document the 7-day cosmetics merchant pilot,
+- decide the short-term demo approach,
+- compare deployment and framework options,
+- validate whether cosmetics, Instagram delivery, reservations, COD, and import workflows should influence the next implementation plan.
+
+Status: active planning only.
+
+Important limits:
+
+- DEMO-7 does not complete Backend B1.
+- DEMO-7 does not implement production cosmetics support.
+- DEMO-7 does not choose the final framework in this document.
+- B1-R1.4 is paused temporarily until DEMO-7 planning and framework decision are complete.
+
 ## Stage 1: Core Retail/Grocery + Wholesale
 
 Focus:
@@ -92,3 +112,53 @@ Delayed internal platform. Future focus:
 - Support records
 - License transfer workflow
 - Signed license generation
+
+## Future Business Profiles
+
+These profiles are future-aware architecture planning only. They are not implemented now.
+
+### Retail Profiles
+
+- Grocery / Mini Market
+- Wholesale / General Wholesale
+- Hypermarket with multiple branches
+- Cosmetics / Beauty / Perfume
+- Clothing stores
+- Clothing complexes
+- Electronics / Mobile / Warranty
+- Weight-based stores
+
+### Wholesale Specialty Profiles
+
+- Wholesale perfumes / cosmetics
+- Wholesale watches / accessories
+- Wholesale gifts / antiques / decor
+- Wholesale kitchenware / homeware
+- Wholesale raw materials
+- Wholesale electricals
+- Wholesale clothing / fashion
+- Wholesale food / grocery
+- General wholesale
+
+### Medical / Healthcare Profiles
+
+- Medical clinics
+- Medical laboratories
+- Radiology / Sonar centers
+- Hospitals
+
+### Education / Institution Profiles
+
+- Schools
+- Teaching institutes
+- Universities
+
+### Manufacturing / Operations Profiles
+
+- Factories
+- Production / raw materials / finished goods workflows
+
+### Service / Custom Profiles
+
+- Services
+- Custom business profile

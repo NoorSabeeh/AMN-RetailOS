@@ -2,6 +2,33 @@
 
 This backlog is prioritized for the first production path. P0 is limited to MVP foundation and backend correctness.
 
+## Temporary High Priority: DEMO-7 Cosmetics Pilot
+
+These tasks are urgent planning and pilot preparation items. Do not mark them complete until they are explicitly implemented or validated in a later approved phase.
+
+- Finalize framework decision for the 7-day pilot.
+- Decide Local-first, Cloud-connected, or Hybrid pilot mode for the demo.
+- Define app skeleton scope for the cosmetics pilot.
+- Define products, variants, shades, and product image requirements.
+- Define locations: warehouses and display/showroom stock.
+- Define incoming shipment workflow from China.
+- Define reservation workflow for named customer and anonymous quantity reservation.
+- Define reservation source rules for available stock and incoming shipment.
+- Define delivery order workflow for Instagram sales.
+- Define delivery company barcode behavior at order level.
+- Define cash-on-delivery workflow.
+- Define weekly/COD collection report, including Thursday collection reality.
+- Define Excel import wizard with flexible column mapping.
+- Define basic sale/order creation with price override.
+- Define audit trail for price, status, and order state changes.
+- Define dashboard/report summaries for the demo.
+- Define QA merchant demo flow and feedback checklist.
+
+## Temporary Pause
+
+- Pause B1-R1.4 until DEMO-7 replan and framework decision are complete.
+- Do not mark Backend B1 complete during DEMO-7 planning.
+
 ## P0: MVP Foundation and Backend Correctness
 
 - Adopt TEAM-1 handoff workflow before Backend B1 resumes.
@@ -13,7 +40,7 @@ This backlog is prioritized for the first production path. P0 is limited to MVP 
 - Keep .NET source ignore rules scoped to `bin/`, `obj/`, and local IDE artifacts only.
 - Keep foundational skeleton tests green (restore/build/test) before continuing B1 implementation.
 - Complete B1-R1.3 architecture split: Domain folders, DbContext skeleton, no migrations.
-- Continue B1 with controlled architecture lock and foundational domain/test split before product features.
+- Continue B1 with controlled architecture lock and foundational domain/test split after DEMO-7 planning pause is resolved.
 - Freeze MVP scope around Retail/Grocery and basic Wholesale/Grocery.
 - Select backend/runtime architecture for a local-first Windows laptop application.
 - Define initial database schema from the conceptual schema.

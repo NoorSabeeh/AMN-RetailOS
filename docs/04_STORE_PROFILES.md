@@ -2,6 +2,8 @@
 
 Store Profiles configure AMN RetailOS for different business types while preserving one shared platform and one backend truth model.
 
+Business Profiles should activate capabilities over one Core Backend. They should not create separate product backends per business type unless a future architecture decision explicitly approves that change.
+
 ## MVP Profiles
 
 ### Retail/Grocery
@@ -106,3 +108,59 @@ Future needs:
 - Optional modules
 
 MVP status: delayed until the core is stable.
+
+## Business Profiles / Future Profiles
+
+These profiles are future-aware architecture planning only. They are not implemented now.
+
+### Retail Profiles
+
+- Grocery / Mini Market
+- Wholesale / General Wholesale
+- Hypermarket with multiple branches
+- Cosmetics / Beauty / Perfume
+- Clothing stores
+- Clothing complexes
+- Electronics / Mobile / Warranty
+- Weight-based stores
+
+### Wholesale Specialty Profiles
+
+Wholesale is not one fixed type. AMN RetailOS should eventually support specialty wholesale workflows such as:
+
+- Wholesale perfumes / cosmetics
+- Wholesale watches / accessories
+- Wholesale gifts / antiques / decor
+- Wholesale kitchenware / homeware
+- Wholesale raw materials
+- Wholesale electricals
+- Wholesale clothing / fashion
+- Wholesale food / grocery
+- General wholesale
+
+### Medical / Healthcare Profiles
+
+- Medical clinics
+- Medical laboratories
+- Radiology / Sonar centers
+- Hospitals
+
+### Education / Institution Profiles
+
+- Schools
+- Teaching institutes
+- Universities
+
+### Manufacturing / Operations Profiles
+
+- Factories
+- Production / raw materials / finished goods workflows
+
+### Service / Custom Profiles
+
+- Services
+- Custom business profile
+
+## Cosmetics Pilot Note
+
+Cosmetics / Beauty / Perfume is the urgent DEMO-7 pilot profile. This is a temporary pilot planning focus and does not mean cosmetics support is complete.
