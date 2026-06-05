@@ -6,11 +6,18 @@ Current main product phase:
 
 Backend Foundation B1 - Recovery, Build Validation, and Architecture Lock.
 
-B1 is not complete. The B1-R1.3 checkpoint is green, but B1-R1.4 is paused temporarily while DEMO-7 cosmetics pilot planning and framework decision work is documented.
+B1 is not complete. The B1-R1.3 checkpoint is green, but B1-R1.4 is paused temporarily while DEMO-7 cosmetics pilot planning and implementation planning are documented.
 
 Temporary active planning overlay:
 
-REPLAN-DEMO-7 - Cosmetics Pilot Planning.
+DEMO-7 - Cosmetics Pilot Planning.
+
+Framework decision recorded:
+
+- Backend/Core: .NET 10 / ASP.NET Core / Clean Architecture
+- Windows: WinUI 3 + Windows App SDK + .NET
+- Android: Kotlin + Jetpack Compose
+- iPhone: Swift + SwiftUI later, postponed for DEMO-7
 
 ## Coordination Tools
 
@@ -47,7 +54,7 @@ REPLAN-DEMO-7 - Cosmetics Pilot Planning.
 
 - Backend/core architecture direction.
 - Product decisions for the cosmetics pilot.
-- Windows direction.
+- Windows direction using WinUI 3 + Windows App SDK + .NET.
 - iPhone target decision later.
 - Final DEMO-7 scope control before implementation starts.
 
@@ -78,7 +85,7 @@ REPLAN-DEMO-7 - Cosmetics Pilot Planning.
 ### Temporary DEMO-7 Responsibilities
 
 - Backend partnership.
-- Android direction.
+- Android direction using Kotlin + Jetpack Compose.
 - Data/import support.
 - Cosmetics workflow data questions.
 - Pilot validation support.

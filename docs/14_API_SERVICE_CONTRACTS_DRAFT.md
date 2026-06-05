@@ -11,6 +11,18 @@ This is a planning draft for backend service contracts. It is not implementation
 - Responses must include clear success, validation error, permission error, and retryable error states.
 - Frontend must not infer committed state after timeout; it must query by idempotency key or document id.
 
+## Client Contract Consumers
+
+The same API contracts and response/error models must serve all approved clients:
+
+- Windows WinUI client
+- Android Kotlin client
+- iPhone Swift client later
+
+All clients consume backend decisions. Clients must not own independent business rules for inventory, reservations, sales/order lifecycle, permissions, price override approval, COD state, reports, audit trail, or future sync behavior.
+
+The backend/core is the contract and business correctness center. Client-specific UI may differ, but committed behavior must stay consistent across platforms.
+
 ## Store Setup Service
 
 Responsibilities:

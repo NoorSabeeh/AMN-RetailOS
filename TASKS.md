@@ -6,7 +6,11 @@ This backlog is prioritized for the first production path. P0 is limited to MVP 
 
 These tasks are urgent planning and pilot preparation items. Do not mark them complete until they are explicitly implemented or validated in a later approved phase.
 
-- Finalize framework decision for the 7-day pilot.
+- Completed DEMO-7-F1 framework decision record in `docs/23_DEMO_7_FRAMEWORK_DECISION.md`.
+- Plan contract-first demo API path.
+- Plan Windows WinUI shell structure.
+- Plan Android Kotlin shell structure.
+- Plan cloud-connected pilot data path.
 - Decide Local-first, Cloud-connected, or Hybrid pilot mode for the demo.
 - Define app skeleton scope for the cosmetics pilot.
 - Define products, variants, shades, and product image requirements.

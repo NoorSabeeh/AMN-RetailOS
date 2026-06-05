@@ -19,8 +19,26 @@ Important limits:
 
 - DEMO-7 does not complete Backend B1.
 - DEMO-7 does not implement production cosmetics support.
-- DEMO-7 does not choose the final framework in this document.
+- DEMO-7 framework decision is recorded separately in `docs/23_DEMO_7_FRAMEWORK_DECISION.md`.
 - B1-R1.4 is paused temporarily until DEMO-7 planning and framework decision are complete.
+
+## DEMO-7 Framework Path
+
+Accepted direction:
+
+1. Backend/Core contracts and demo backend path
+2. Windows native app
+3. Android native app
+4. iPhone later
+
+Technology choices:
+
+- Backend/Core: .NET 10 / ASP.NET Core / Clean Architecture
+- Windows: WinUI 3 + Windows App SDK + .NET
+- Android: Kotlin + Jetpack Compose
+- iPhone: Swift + SwiftUI later
+
+Cross-platform stacks are not the accepted long-term product direction. Flutter, Ionic, MAUI, Expo, or similar stacks may be used only for prototypes if explicitly approved later.
 
 ## Stage 1: Core Retail/Grocery + Wholesale
 

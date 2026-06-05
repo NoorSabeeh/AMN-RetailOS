@@ -97,3 +97,51 @@ Decision: Wholesale is not one fixed type; it includes specialty wholesale profi
 Reason: Specialty wholesalers have different product, import, pricing, reservation, and reporting needs.
 
 Status: accepted for planning.
+
+## Decision 013: Native-per-platform Clients Accepted
+
+Decision: AMN RetailOS accepts a native-per-platform client strategy for long-term product quality.
+
+Reason: Windows, Android, and future iPhone clients need strong platform control for hardware, camera/image workflows, local behavior, performance, and deployment quality.
+
+Status: accepted.
+
+## Decision 014: .NET 10 Backend/Core Remains Business Logic Center
+
+Decision: The backend/core stack remains .NET 10 / ASP.NET Core / Clean Architecture.
+
+Reason: The backend must own inventory, reservations, sales/order lifecycle, permissions, COD, reports, audit, and future sync decisions across all client apps.
+
+Status: accepted.
+
+## Decision 015: WinUI 3 Selected For Windows
+
+Decision: The Windows client will use WinUI 3 + Windows App SDK + .NET.
+
+Reason: Native Windows is the strongest path for laptop deployment, printing, hardware diagnostics, installer/signing workflows, and local-first operation.
+
+Status: accepted for planning.
+
+## Decision 016: Kotlin + Jetpack Compose Selected For Android
+
+Decision: The Android client will use Kotlin + Jetpack Compose.
+
+Reason: Native Android supports merchant mobile workflows, product images, barcode/image scanning, offline behavior, and strong mobile UI quality.
+
+Status: accepted for planning.
+
+## Decision 017: SwiftUI Selected For Future iPhone App
+
+Decision: A future iPhone client will use Swift + SwiftUI, but iPhone implementation, signing, and distribution are postponed.
+
+Reason: iPhone remains a future target, but it must not block DEMO-7 or create App Store/TestFlight delivery promises now.
+
+Status: accepted, postponed for implementation.
+
+## Decision 018: DEMO-7 Starts Cloud-connected
+
+Decision: DEMO-7 starts cloud-connected first while preserving Local-first and Hybrid as long-term targets.
+
+Reason: The cosmetics pilot needs speed, shared access, Instagram delivery workflows, and real merchant feedback. This does not cancel the local-first product strategy.
+
+Status: accepted for DEMO-7 planning.

@@ -75,6 +75,20 @@ AMN RetailOS should keep one shared backend/domain/business rules core wherever 
 
 Do not create separate backends for each business type unless a future technical decision proves that separation is necessary.
 
+## Client Platform Strategy
+
+AMN RetailOS will use native clients over shared backend contracts:
+
+- Windows native app: WinUI 3 + Windows App SDK + .NET
+- Android native app: Kotlin + Jetpack Compose
+- iPhone native app later: Swift + SwiftUI
+
+The backend/core remains .NET 10 / ASP.NET Core / Clean Architecture.
+
+All clients must consume the same API contracts and response/error models. Clients must not implement independent inventory, reservation, sales, permission, COD, report, audit, or sync business logic.
+
+The iPhone implementation, signing, and distribution decision is postponed and must not block DEMO-7.
+
 ## Why v0.1 Is Retail/Grocery + Wholesale Only
 
 Retail/Grocery and Wholesale/Grocery provide the strongest foundation for the shared platform. They require the core product truth: fast barcode selling, product catalog, unit conversion, inventory movements, invoices, payments, customer debt, suppliers, cash sessions, reports, users, audit logs, and backup/restore.
@@ -99,3 +113,5 @@ The following are explicitly delayed:
 ## Temporary Pilot Replan
 
 `docs/22_DEMO_7_COSMETICS_PILOT_REPLAN.md` documents an urgent 7-day cosmetics pilot planning sprint. It is a temporary replan and does not claim cosmetics support, cloud mode, Android, or any future profile is implemented.
+
+The accepted framework decision is documented in `docs/23_DEMO_7_FRAMEWORK_DECISION.md`. It records the native-per-platform strategy only and does not create app projects or implement product features.
