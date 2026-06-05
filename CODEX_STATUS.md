@@ -6,7 +6,7 @@ Project Foundation Planning
 
 ## Current Active Coordination Phase
 
-DEMO-7-F1 - Native Platform Framework Decision Record
+DEMO-7-P1 - Cosmetics Pilot Implementation Plan, Workstreams, and Build Gates
 
 ## Current Main Product Phase
 
@@ -26,7 +26,7 @@ B1-R1.4 is paused temporarily while DEMO-7 cosmetics pilot planning and implemen
 
 Not started.
 
-The DEMO-7-F1 update is documentation only. No product feature, app UI, backend runtime behavior, migration, cloud configuration, or app project has been implemented by this decision record.
+The DEMO-7-P1 update is documentation only. No product feature, app UI, backend runtime behavior, migration, cloud configuration, or app project has been implemented by this planning phase.
 
 DEMO-7-F1 framework decision is recorded:
 
@@ -36,6 +36,13 @@ DEMO-7-F1 framework decision is recorded:
 - iPhone: Swift + SwiftUI later
 
 Accepted long-term client strategy: native-per-platform clients over shared backend/API contracts. The backend/core remains the business logic center. DEMO-7 starts cloud-connected first, without canceling Local-first or Hybrid long-term targets.
+
+DEMO-7-P1 implementation plan is created:
+
+- planning uses workstreams and build gates, not fixed daily task counts,
+- Backend/Core ownership is split between Noor and Ali,
+- build gates define acceptance criteria and stop conditions,
+- next step is implementation start only after planning approval.
 
 ## Internal Project Portal
 
@@ -106,13 +113,14 @@ Documentation and planning foundation:
 - Member work packages and Telegram submission templates
 - DEMO-7 cosmetics pilot replan in `docs/22_DEMO_7_COSMETICS_PILOT_REPLAN.md`
 - DEMO-7 framework decision in `docs/23_DEMO_7_FRAMEWORK_DECISION.md`
+- DEMO-7 implementation plan in `docs/24_DEMO_7_IMPLEMENTATION_PLAN.md`
 - File submission rules for Codex review and safe integration
 
 ## Next Recommended Phase
 
 Next immediate step:
 
-- DEMO-7 implementation planning.
+- DEMO-7 implementation start after planning approval.
 
 After DEMO-7 planning is resolved, continue one of:
 
@@ -157,10 +165,13 @@ B1-R1.3 architecture lock pass is completed:
 REPLAN-DEMO-7 status:
 
 - DEMO-7-F1 framework decision recorded,
+- DEMO-7-P1 implementation plan created,
 - B1-R1.4 paused temporarily,
 - cosmetics pilot scope documented as urgent temporary sprint,
 - Local-first, Cloud-connected, and Hybrid deployment modes documented for planning,
 - iPhone native build/distribution decision postponed,
 - Windows and Android treated as higher-priority pilot targets,
 - native-per-platform strategy accepted,
+- workstreams/build gates plan accepted as the execution planning model,
+- Backend/Core ownership split between Noor and Ali,
 - no runtime code changed.

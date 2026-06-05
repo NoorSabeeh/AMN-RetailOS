@@ -19,6 +19,12 @@ Framework decision recorded:
 - Android: Kotlin + Jetpack Compose
 - iPhone: Swift + SwiftUI later, postponed for DEMO-7
 
+Execution planning model:
+
+- Workstreams and build gates, not fixed daily task counts.
+- Backend/Core is shared by Noor and Ali.
+- Implementation starts only after planning approval.
+
 ## Coordination Tools
 
 - Telegram Topics: daily updates, file submissions, bug reports, screenshots, questions.
@@ -52,11 +58,12 @@ Framework decision recorded:
 
 ### Temporary DEMO-7 Responsibilities
 
-- Backend/core architecture direction.
+- Backend/core architecture with Ali.
 - Product decisions for the cosmetics pilot.
 - Windows direction using WinUI 3 + Windows App SDK + .NET.
 - iPhone target decision later.
 - Final DEMO-7 scope control before implementation starts.
+- Final review.
 
 ## Ali - Backend/Data Owner
 
@@ -84,7 +91,7 @@ Framework decision recorded:
 
 ### Temporary DEMO-7 Responsibilities
 
-- Backend partnership.
+- Backend/core partnership with Noor.
 - Android direction using Kotlin + Jetpack Compose.
 - Data/import support.
 - Cosmetics workflow data questions.
@@ -154,6 +161,14 @@ Framework decision recorded:
 ## Temporary UI Responsibility For DEMO-7
 
 UI planning for the temporary cosmetics pilot is shared between Noor and Ali, with Mohammed optional later for UI polish if approved.
+
+## DEMO-7 Workstream Ownership
+
+- Backend/Core + Contracts: Noor + Ali.
+- Windows App planning: Noor.
+- Android App planning: Ali.
+- QA / Merchant Feedback: Murtadha.
+- Optional UI Polish: Mohammed only if explicitly activated.
 
 ## Deadline Format
 

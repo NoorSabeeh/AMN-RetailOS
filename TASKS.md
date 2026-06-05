@@ -7,11 +7,36 @@ This backlog is prioritized for the first production path. P0 is limited to MVP 
 These tasks are urgent planning and pilot preparation items. Do not mark them complete until they are explicitly implemented or validated in a later approved phase.
 
 - Completed DEMO-7-F1 framework decision record in `docs/23_DEMO_7_FRAMEWORK_DECISION.md`.
-- Plan contract-first demo API path.
-- Plan Windows WinUI shell structure.
-- Plan Android Kotlin shell structure.
-- Plan cloud-connected pilot data path.
-- Decide Local-first, Cloud-connected, or Hybrid pilot mode for the demo.
+- Completed DEMO-7-P1 implementation plan in `docs/24_DEMO_7_IMPLEMENTATION_PLAN.md`.
+
+### DEMO-7 Workstreams
+
+- Backend/Core + Contracts: Noor + Ali share demo data model, API contract draft, permissions, inventory/reservation/order/COD rules, audit basics, and cloud-connected data path planning.
+- Windows App: Noor owns admin/operations screens, products, import workflow, inventory locations, reports/dashboard, and owner actions.
+- Android App: Ali owns mobile workflow, product lookup, barcode scan/manual fallback, order preparation, status changes, and image upload/capture planning.
+- QA / Merchant Feedback: Murtadha owns test script, merchant feedback form, bug report format, demo checklist, and risk observations.
+- Optional UI Polish: Mohammed may assist only if explicitly activated, limited to visual polish and layout feedback.
+
+### DEMO-7 Build Gates
+
+- Gate 0 - Scope Lock.
+- Gate 1 - Backend Contract Baseline.
+- Gate 2 - Cloud-connected Demo Path.
+- Gate 3 - Windows Demo Shell Plan.
+- Gate 4 - Android Demo Shell Plan.
+- Gate 5 - Feature Vertical Slice Plan.
+- Gate 6 - QA and Merchant Demo Readiness.
+
+### DEMO-7 Next Planning/Implementation Tasks
+
+- Prepare Gate 0 scope lock note.
+- Draft Gate 1 minimum DTO/API contracts.
+- Draft DEMO-7 data model details without migrations.
+- Select conceptual cloud-connected pilot data path without credentials.
+- Plan Windows WinUI shell screens without creating a project.
+- Plan Android Kotlin shell workflows without creating a project.
+- Prepare merchant QA script and feedback form.
+- Confirm cloud-connected pilot details while preserving Local-first and Hybrid future compatibility.
 - Define app skeleton scope for the cosmetics pilot.
 - Define products, variants, shades, and product image requirements.
 - Define locations: warehouses and display/showroom stock.
@@ -30,7 +55,7 @@ These tasks are urgent planning and pilot preparation items. Do not mark them co
 
 ## Temporary Pause
 
-- Pause B1-R1.4 until DEMO-7 replan and framework decision are complete.
+- Pause B1-R1.4 until DEMO-7 planning approval allows the team to resume or reprioritize.
 - Do not mark Backend B1 complete during DEMO-7 planning.
 
 ## P0: MVP Foundation and Backend Correctness

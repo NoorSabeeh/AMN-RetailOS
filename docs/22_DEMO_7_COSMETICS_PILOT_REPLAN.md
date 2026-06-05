@@ -123,7 +123,7 @@ Windows remains important because AMN RetailOS was originally planned for a loca
 
 Android is also important for the cosmetics pilot because the merchant may use mobile workflows frequently for Instagram sales, product images, delivery order checks, and warehouse/display updates.
 
-The framework choice for Windows and Android will be decided after this documentation-only replan.
+The framework choice is documented in `docs/23_DEMO_7_FRAMEWORK_DECISION.md`: WinUI 3 for Windows and Kotlin + Jetpack Compose for Android.
 
 ## One Core Backend Rule
 
@@ -269,6 +269,6 @@ Every task must define when to stop. Example: "stop when the Excel import questi
 
 ## Next Planning Step
 
-Next step: framework decision for the 7-day cosmetics pilot.
+Next step: implementation planning for the 7-day cosmetics pilot.
 
-The next planning task should compare options for Windows, Android, cloud-connected mode, local-first constraints, speed of demo delivery, future maintainability, and team skills.
+The next planning task should define workstreams, build gates, stop conditions, and the contract-first path for the cloud-connected pilot while preserving Local-first and Hybrid future compatibility.
