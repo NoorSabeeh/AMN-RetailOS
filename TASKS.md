@@ -20,7 +20,7 @@ These tasks are urgent planning and pilot preparation items. Do not mark them co
 ### DEMO-7 Build Gates
 
 - Gate 0 - Scope Lock: completed for DEMO-7-G0+D1.
-- Gate 1 - Backend Contract Baseline: started with generic domain model and Application DTO contracts.
+- Gate 1 - Backend Contract Baseline: continued with D2 API surface placeholders and validation baseline.
 - Gate 2 - Cloud-connected Demo Path.
 - Gate 3 - Windows Demo Shell Plan.
 - Gate 4 - Android Demo Shell Plan.
@@ -29,7 +29,7 @@ These tasks are urgent planning and pilot preparation items. Do not mark them co
 
 ### DEMO-7 Next Planning/Implementation Tasks
 
-- Review Gate 1 DTO/API contract baseline with Noor + Ali.
+- Review Gate 1 DTO/API contract and validation baseline with Noor + Ali.
 - Extend Gate 1 only after Noor approval for backend/API/database/business-rule decisions.
 - Select conceptual cloud-connected pilot data path without credentials.
 - Plan Windows WinUI shell screens without creating a project.
@@ -59,6 +59,15 @@ These tasks are urgent planning and pilot preparation items. Do not mark them co
 - Application DTO contract baseline started for shared Windows, Android, and future iPhone consumers.
 - DbContext skeleton aligned with new model entities without migrations.
 - API metadata/status route may exist only as a safe placeholder and must not claim working product features.
+
+### DEMO-7-D2 API Surface And Validation Baseline
+
+- API route surface baseline added for DEMO-7 route groups.
+- Route placeholders return honest Not Implemented responses.
+- Standard response/error DTOs added.
+- Manual validation baseline added without external packages.
+- Validation covers product drafts, variants, images, locations, reservations, delivery orders/barcodes, sale drafts, shipments, and customers.
+- Full CRUD, inventory engine, sale commit, COD settlement, migrations, app projects, and cloud config remain postponed.
 
 ## Temporary Pause
 

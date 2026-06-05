@@ -312,10 +312,19 @@ Acceptance criteria:
 - Minimum data model is accepted.
 - No client business rules are assigned.
 - Backend/Core work is split between Noor and Ali.
+- D2 API route placeholders expose the contract-first surface without claiming implemented behavior.
+- Manual validation baseline exists for request shape and simple known values.
 
 Stop condition:
 
 - Contracts and data model are clear enough for Windows and Android shell planning.
+
+Current D2 status:
+
+- route surface baseline added,
+- placeholders return Not Implemented,
+- validation does not query a database or perform business operations,
+- no migrations or app projects are added.
 
 ### Gate 2 - Cloud-connected Demo Path
 

@@ -6,7 +6,7 @@ Project Foundation Planning
 
 ## Current Active Coordination Phase
 
-DEMO-7-G0+D1 - Scope Lock + Backend/Core Contracts and Demo Data Model Start
+DEMO-7-D2 - Contract-First API Surface And Validation Rules Baseline
 
 ## Current Main Product Phase
 
@@ -56,6 +56,17 @@ DEMO-7-G0+D1 status:
 - No Windows, Android, or iPhone app projects are created.
 - No database migrations are added.
 - Restore/build/test validation passes for the current baseline.
+- B1 remains not complete and B1-R1.4 remains paused temporarily.
+
+DEMO-7-D2 status:
+
+- Contract-first API route surface baseline is added with route groups for contracts, products, locations, inventory, shipments, reservations, customers, delivery orders, sales, COD reports, and audit.
+- Route placeholders return honest `501 Not Implemented` responses and do not claim working features.
+- Standard API response/error DTOs are added for platform-neutral clients.
+- Validation baseline is added in Application without external packages, database queries, stock checks, permission checks, or business operations.
+- No full CRUD, inventory engine, sale commit logic, or COD settlement logic is implemented.
+- No app projects, migrations, cloud credentials, or Supabase/cloud config are added.
+- Restore/build/test validation passes for the D2 baseline.
 - B1 remains not complete and B1-R1.4 remains paused temporarily.
 
 ## Internal Project Portal
@@ -129,6 +140,7 @@ Documentation and planning foundation:
 - DEMO-7 framework decision in `docs/23_DEMO_7_FRAMEWORK_DECISION.md`
 - DEMO-7 implementation plan in `docs/24_DEMO_7_IMPLEMENTATION_PLAN.md`
 - DEMO-7-G0+D1 backend/model/contracts baseline
+- DEMO-7-D2 API surface and validation baseline
 - File submission rules for Codex review and safe integration
 
 ## Next Recommended Phase

@@ -171,6 +171,9 @@ public sealed class FoundationalSkeletonTests
             typeof(SaleSummaryDto),
             typeof(CODReportSummaryDto),
             typeof(AuditEventSummaryDto),
+            typeof(ApiErrorDto),
+            typeof(ApiResponseDto<object>),
+            typeof(ValidationErrorDto),
             typeof(StandardErrorResponseDto)
         };
 
