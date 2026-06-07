@@ -6,7 +6,7 @@ Project Foundation Planning
 
 ## Current Active Coordination Phase
 
-DEMO-7-D3 - In-Memory Demo Repository Interfaces And Read-Only Contract Smoke Endpoints
+DEMO-7-D4 - Read-Only API Smoke Verification, Contract Docs, and Team Feedback Alignment
 
 ## Current Main Product Phase
 
@@ -78,6 +78,17 @@ DEMO-7-D3 status:
 - Persistence is in-memory demo data only; no database writes are performed.
 - No migrations, cloud credentials/config, Supabase changes, or app projects are added.
 - Restore/build/test validation passes for the D3 baseline.
+- B1 remains not complete and B1-R1.4 remains paused temporarily.
+
+DEMO-7-D4 status:
+
+- Read-only API smoke verification passed for the current GET endpoints.
+- Contract documentation is exported in `docs/25_DEMO_7_API_CONTRACTS_AND_SMOKE_RESPONSES.md`.
+- Ali feedback is incorporated: ProductVariant/Shade relationship, variant barcode priority, order-level delivery barcode, StockLot expiry, named/anonymous reservations, postponed deposit/down payment, Display/Showroom default sale planning, and Android API needs.
+- Murtadha QA feedback is incorporated: Thursday COD cutoff planning, Excel Preview -> Mapping -> Row Validation -> Commit planning, Android active/iPhone postponed clarification, and QA scenarios 22-24.
+- Metadata now states Android is in DEMO-7 scope, iPhone is postponed, COD cutoff planning is future work, and Excel import is not implemented.
+- No write behavior, business logic, migrations, app projects, cloud credentials/config, or Supabase changes are added.
+- Restore/build/test validation passes for the D4 baseline.
 - B1 remains not complete and B1-R1.4 remains paused temporarily.
 
 ## Internal Project Portal
@@ -153,6 +164,7 @@ Documentation and planning foundation:
 - DEMO-7-G0+D1 backend/model/contracts baseline
 - DEMO-7-D2 API surface and validation baseline
 - DEMO-7-D3 in-memory read-only smoke endpoint baseline
+- DEMO-7-D4 contract documentation and team feedback alignment
 - File submission rules for Codex review and safe integration
 
 ## Next Recommended Phase

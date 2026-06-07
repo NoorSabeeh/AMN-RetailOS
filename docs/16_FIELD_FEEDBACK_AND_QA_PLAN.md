@@ -60,6 +60,52 @@ MVP QA must include:
 - Test receipt printer and Arabic/RTL output.
 - Operate without internet.
 
+DEMO-7 QA additions:
+
+- Scenario 22 - Variant/Shade barcode correctness.
+- Scenario 23 - Instagram delivery order + delivery barcode + COD flow.
+- Scenario 24 - Price override + audit log.
+- COD Thursday cutoff report check for Iraqi merchant weekly collection.
+- Excel dynamic mapping check: Preview -> Dynamic Column Mapping -> Row Validation -> Commit.
+
+## DEMO-7 Mobile Scope Correction
+
+Android is active in DEMO-7 scope. QA should cover Android planning needs such as product search, barcode lookup/manual fallback, stock summary, reservations, delivery order status, and COD summary.
+
+iPhone remains postponed. Do not treat iPhone, App Store, TestFlight, or iOS signing as DEMO-7 delivery requirements.
+
+## DEMO-7 Scenario Details
+
+### Scenario 22 - Variant/Shade Barcode Correctness
+
+- Scan or enter a shade-specific barcode.
+- Expected: backend resolves the barcode to the correct ProductVariant/Shade where a shade barcode exists.
+- Check that the general product remains the parent and the selected shade is visible.
+- Confirm manual fallback exists when barcode lookup fails.
+
+### Scenario 23 - Instagram Delivery Order + Delivery Barcode + COD Flow
+
+- Create or review an Instagram delivery order.
+- Attach delivery company barcode at order level.
+- Confirm barcode represents the full order, not individual items.
+- Review COD amount and weekly collection status.
+- Confirm Thursday cutoff reporting is planned.
+
+### Scenario 24 - Price Override + Audit Log
+
+- Apply or simulate a price override during order/sale planning.
+- Expected: backend requires future permission/audit handling.
+- Confirm audit summary includes who changed price/status/order state when implemented.
+- No client should own approval or audit rules.
+
+### Excel Dynamic Mapping QA Check
+
+- Preview imported Excel rows.
+- Map columns dynamically.
+- Validate row errors before commit.
+- Confirm commit is separated from preview and validation.
+- Current status: planning only; no Excel import implementation exists yet.
+
 ## Bug Report Format
 
 Each bug should include:
@@ -79,4 +125,4 @@ Each bug should include:
 
 - Pilot feedback can add tasks, not uncontrolled scope.
 - New requests must be classified P0, P1, P2, Deferred, or Reject.
-- Pharmacy, Restaurant, Clinic, AI, cloud, mobile, online payments, and multi-branch requests remain delayed unless formally moved by a future planning decision.
+- Pharmacy, Restaurant, Clinic, AI, online payments, iPhone delivery, and multi-branch requests remain delayed unless formally moved by a future planning decision.

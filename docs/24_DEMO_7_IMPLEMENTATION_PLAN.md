@@ -173,6 +173,8 @@ Owner: Ali
 
 Android planning focuses on mobile-friendly product lookup, barcode/manual fallback, order preparation, status updates, and image capture/upload planning.
 
+Android is active in DEMO-7 scope. It needs product search, barcode lookup, stock summary, reservations, delivery order status, and COD summary.
+
 ### iPhone
 
 Postponed.
@@ -335,6 +337,19 @@ Current D3 status:
 - persistence is not production-ready and remains in-memory demo data only,
 - no migrations, cloud config, credentials, or app projects are added.
 
+Current D4 feedback alignment:
+
+- Product remains the general parent model.
+- ProductVariant/Shade relationship must be clear for cosmetics and future profiles.
+- Variant/Shade barcode should be treated as primary for cosmetics flows when shade-specific barcode exists.
+- Delivery barcode belongs to the whole order, not each item.
+- Expiry/lot awareness should be tied to StockLot where practical.
+- Reservation can be for named customer or anonymous quantity.
+- Deposit/down payment is postponed and is not P0.
+- Sale defaults from Display/Showroom stock; Warehouse sale should require permission later.
+- COD reports must support Iraqi merchant weekly cutoff planning, especially Thursday.
+- Android is active for DEMO-7; iPhone remains postponed.
+
 ### Gate 2 - Cloud-connected Demo Path
 
 Acceptance criteria:
@@ -449,6 +464,7 @@ This is conceptual only. Do not implement endpoints from this section.
 - list variants for product
 - create/update variant or shade
 - link barcode or manual code where needed
+- treat shade-specific barcode as primary in cosmetics flows where present
 
 ### Images
 
@@ -467,6 +483,9 @@ This is conceptual only. Do not implement endpoints from this section.
 - view stock position
 - record movement conceptually
 - transfer between warehouse/display conceptually
+- represent expiry through StockLot where practical
+- default sale source should be Display/Showroom stock
+- Warehouse sale should require permission later
 
 ### Incoming shipments
 
@@ -492,6 +511,7 @@ This is conceptual only. Do not implement endpoints from this section.
 - create Instagram delivery order
 - attach delivery barcode
 - update delivery status
+- delivery barcode belongs to the whole order
 
 ### Sales
 
@@ -503,6 +523,7 @@ This is conceptual only. Do not implement endpoints from this section.
 
 - weekly COD collection summary
 - delivery company collection status
+- Thursday cutoff planning for Iraqi merchant workflow
 
 ### Audit summary
 

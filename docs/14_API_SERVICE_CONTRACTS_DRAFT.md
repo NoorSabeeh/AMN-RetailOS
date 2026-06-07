@@ -23,6 +23,21 @@ All clients consume backend decisions. Clients must not own independent business
 
 The backend/core is the contract and business correctness center. Client-specific UI may differ, but committed behavior must stay consistent across platforms.
 
+## DEMO-7 Android Contract Needs
+
+Android is active in DEMO-7 scope. Android needs API support for:
+
+- product search,
+- variant/shade barcode lookup,
+- stock summary,
+- reservations,
+- delivery order status,
+- delivery barcode lookup,
+- COD summary,
+- manual fallback when barcode or image reading fails.
+
+Android must not own business rules. It must display backend decisions and errors.
+
 ## Store Setup Service
 
 Responsibilities:
@@ -44,6 +59,7 @@ Responsibilities:
 - Create and update products.
 - Assign categories, units, prices, and active status.
 - Support products with or without barcode.
+- Support variant/shade-specific barcode planning for cosmetics workflows.
 
 Key operations:
 
@@ -53,6 +69,7 @@ Key operations:
 - `createProduct`
 - `updateProduct`
 - `deactivateProduct`
+- `resolveVariantBarcode` future concept
 
 ## Barcode Service
 
@@ -95,6 +112,7 @@ Responsibilities:
 Key operations:
 
 - `getStockPosition`
+- `getStockSummary`
 - `listInventoryMovements`
 - `createManualAdjustment`
 - `createOpeningBalance`
@@ -241,6 +259,36 @@ Key operations:
 - `supplierDebtReport`
 - `cashSessionReport`
 - `auditReport`
+- `codCollectionReport`
+
+DEMO-7 COD report concept:
+
+- `GET /api/reports/cod`
+- future query option: `GET /api/reports/cod?cutOffDay=Thursday`
+
+This is a contract/planning note. Cutoff-day filtering is not implemented yet.
+
+## Excel Import Contract Concept
+
+Excel import must be safe and reviewable. It must not be a blind import.
+
+Future flow:
+
+Preview -> Mapping -> Row Validation -> Commit.
+
+1. Preview uploaded file.
+2. Dynamic column mapping.
+3. Row validation.
+4. Commit only approved valid rows.
+
+Future conceptual operations:
+
+- `previewImport`
+- `saveImportMapping`
+- `validateImportRows`
+- `commitImport`
+
+No Excel import endpoint or implementation exists yet in DEMO-7-D4.
 
 ## Users and Roles Service
 

@@ -18,6 +18,10 @@ public static class Demo7ContractEndpoints
             persistenceMode = "in_memory_demo_data",
             databaseMigrationsAdded = false,
             cloudConfigAdded = false,
+            androidInDemoScope = true,
+            iphonePostponed = true,
+            codCutoffPlanning = "Thursday cutoff must be supported in future COD reporting.",
+            excelImportStatus = "postponed; future flow is Preview -> Mapping -> Row Validation -> Commit",
             productionReady = false
         }));
 
@@ -25,6 +29,10 @@ public static class Demo7ContractEndpoints
         {
             phase = "DEMO-7-D3",
             note = "GET routes are read-only smoke endpoints backed by in-memory demo data. Write operations are not implemented.",
+            androidScope = "Android is active for DEMO-7 planning.",
+            iphoneScope = "iPhone is postponed.",
+            codCutoffPlanning = "Future COD report contract should support cutOffDay=Thursday.",
+            excelImportStatus = "Excel import is not implemented.",
             routeGroups = Demo7EndpointCatalog.RouteGroups
         }));
 
