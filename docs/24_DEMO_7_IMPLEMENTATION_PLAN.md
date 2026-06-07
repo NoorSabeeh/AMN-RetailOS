@@ -326,6 +326,15 @@ Current D2 status:
 - validation does not query a database or perform business operations,
 - no migrations or app projects are added.
 
+Current D3 status:
+
+- read-only query interfaces are added,
+- in-memory demo data provider is added for smoke responses,
+- selected GET endpoints return standard wrapped sample data,
+- write operations remain Not Implemented,
+- persistence is not production-ready and remains in-memory demo data only,
+- no migrations, cloud config, credentials, or app projects are added.
+
 ### Gate 2 - Cloud-connected Demo Path
 
 Acceptance criteria:

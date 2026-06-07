@@ -6,7 +6,7 @@ Project Foundation Planning
 
 ## Current Active Coordination Phase
 
-DEMO-7-D2 - Contract-First API Surface And Validation Rules Baseline
+DEMO-7-D3 - In-Memory Demo Repository Interfaces And Read-Only Contract Smoke Endpoints
 
 ## Current Main Product Phase
 
@@ -67,6 +67,17 @@ DEMO-7-D2 status:
 - No full CRUD, inventory engine, sale commit logic, or COD settlement logic is implemented.
 - No app projects, migrations, cloud credentials, or Supabase/cloud config are added.
 - Restore/build/test validation passes for the D2 baseline.
+- B1 remains not complete and B1-R1.4 remains paused temporarily.
+
+DEMO-7-D3 status:
+
+- Read-only Application query interfaces are added for products, locations, inventory, shipments, reservations, customers, delivery orders, COD report, and audit summary.
+- Infrastructure includes a clearly demo-only in-memory read-only data provider.
+- Selected GET endpoints return standard wrapped sample responses for smoke testing future Windows and Android clients.
+- Write operations remain not implemented and return Not Implemented placeholders.
+- Persistence is in-memory demo data only; no database writes are performed.
+- No migrations, cloud credentials/config, Supabase changes, or app projects are added.
+- Restore/build/test validation passes for the D3 baseline.
 - B1 remains not complete and B1-R1.4 remains paused temporarily.
 
 ## Internal Project Portal
@@ -141,6 +152,7 @@ Documentation and planning foundation:
 - DEMO-7 implementation plan in `docs/24_DEMO_7_IMPLEMENTATION_PLAN.md`
 - DEMO-7-G0+D1 backend/model/contracts baseline
 - DEMO-7-D2 API surface and validation baseline
+- DEMO-7-D3 in-memory read-only smoke endpoint baseline
 - File submission rules for Codex review and safe integration
 
 ## Next Recommended Phase

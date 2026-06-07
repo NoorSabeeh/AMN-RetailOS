@@ -225,7 +225,7 @@ public sealed class Demo7D2ContractBaselineTests
 
         Assert.Contains("ApiResponses.NotImplemented", source, StringComparison.Ordinal);
         Assert.Contains("Status501NotImplemented", responseSource, StringComparison.Ordinal);
-        Assert.Contains("featuresImplemented = false", source, StringComparison.Ordinal);
+        Assert.Contains("writeOperationsImplemented = false", source, StringComparison.Ordinal);
     }
 
     private static string FindRepoRoot()

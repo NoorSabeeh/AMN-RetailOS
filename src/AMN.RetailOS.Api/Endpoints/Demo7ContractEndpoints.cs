@@ -1,4 +1,5 @@
 using AMN.RetailOS.Api.Responses;
+using AMN.RetailOS.Application.Interfaces;
 
 namespace AMN.RetailOS.Api.Endpoints;
 
@@ -9,48 +10,87 @@ public static class Demo7ContractEndpoints
         app.MapGet("/api/contracts/status", () => Results.Ok(new
         {
             product = "AMN RetailOS",
-            phase = "DEMO-7-D2",
-            contractVersion = "demo-7-d2",
-            implementationStatus = "api_surface_and_validation_baseline_only",
-            featuresImplemented = false
+            phase = "DEMO-7-D3",
+            contractVersion = "demo-7-d3",
+            implementationStatus = "read_only_smoke_endpoints_with_in_memory_demo_data",
+            readOnlySmokeEndpointsAvailable = true,
+            writeOperationsImplemented = false,
+            persistenceMode = "in_memory_demo_data",
+            databaseMigrationsAdded = false,
+            cloudConfigAdded = false,
+            productionReady = false
         }));
 
         app.MapGet("/api/contracts/routes", () => Results.Ok(new
         {
-            phase = "DEMO-7-D2",
-            note = "Route groups are contract-first placeholders. Product behavior is not implemented.",
+            phase = "DEMO-7-D3",
+            note = "GET routes are read-only smoke endpoints backed by in-memory demo data. Write operations are not implemented.",
             routeGroups = Demo7EndpointCatalog.RouteGroups
         }));
 
-        app.MapGroup("/api/products")
-            .MapGet("/", () => ApiResponses.NotImplemented("products", "list"));
+        var products = app.MapGroup("/api/products");
+        products.MapGet("/", async (IProductCatalogQuery query, CancellationToken cancellationToken) =>
+            ApiResponses.Success(await query.ListProductsAsync(cancellationToken)));
+        products.MapGet("/{id:guid}", async (Guid id, IProductCatalogQuery query, CancellationToken cancellationToken) =>
+        {
+            var product = await query.GetProductAsync(id, cancellationToken);
+            return product is null
+                ? ApiResponses.NotFound("product_not_found", "Product was not found in DEMO-7 in-memory sample data.")
+                : ApiResponses.Success(product);
+        });
+        products.MapPost("/", () => ApiResponses.NotImplemented("products", "create"));
+        products.MapPut("/{id:guid}", () => ApiResponses.NotImplemented("products", "update"));
 
-        app.MapGroup("/api/locations")
-            .MapGet("/", () => ApiResponses.NotImplemented("locations", "list"));
+        var locations = app.MapGroup("/api/locations");
+        locations.MapGet("/", async (ILocationQuery query, CancellationToken cancellationToken) =>
+            ApiResponses.Success(await query.ListLocationsAsync(cancellationToken)));
+        locations.MapPost("/", () => ApiResponses.NotImplemented("locations", "create"));
 
-        app.MapGroup("/api/inventory")
-            .MapGet("/", () => ApiResponses.NotImplemented("inventory", "position"));
+        var inventory = app.MapGroup("/api/inventory");
+        inventory.MapGet("/summary", async (IInventoryPositionQuery query, CancellationToken cancellationToken) =>
+            ApiResponses.Success(await query.GetInventorySummaryAsync(cancellationToken)));
+        inventory.MapPost("/movements", () => ApiResponses.NotImplemented("inventory", "create_movement"));
 
-        app.MapGroup("/api/shipments")
-            .MapGet("/", () => ApiResponses.NotImplemented("shipments", "list"));
+        var shipments = app.MapGroup("/api/shipments");
+        shipments.MapGet("/", async (IIncomingShipmentQuery query, CancellationToken cancellationToken) =>
+            ApiResponses.Success(await query.ListIncomingShipmentsAsync(cancellationToken)));
+        shipments.MapPost("/", () => ApiResponses.NotImplemented("shipments", "create"));
 
-        app.MapGroup("/api/reservations")
-            .MapGet("/", () => ApiResponses.NotImplemented("reservations", "list"));
+        var reservations = app.MapGroup("/api/reservations");
+        reservations.MapGet("/", async (IReservationQuery query, CancellationToken cancellationToken) =>
+            ApiResponses.Success(await query.ListReservationsAsync(cancellationToken)));
+        reservations.MapPost("/", () => ApiResponses.NotImplemented("reservations", "create"));
+        reservations.MapPatch("/{id:guid}", () => ApiResponses.NotImplemented("reservations", "update"));
 
-        app.MapGroup("/api/customers")
-            .MapGet("/", () => ApiResponses.NotImplemented("customers", "list"));
+        var customers = app.MapGroup("/api/customers");
+        customers.MapGet("/", async (ICustomerQuery query, CancellationToken cancellationToken) =>
+            ApiResponses.Success(await query.ListCustomersAsync(cancellationToken)));
+        customers.MapPost("/", () => ApiResponses.NotImplemented("customers", "create"));
 
-        app.MapGroup("/api/delivery-orders")
-            .MapGet("/", () => ApiResponses.NotImplemented("delivery_orders", "list"));
+        var deliveryOrders = app.MapGroup("/api/delivery-orders");
+        deliveryOrders.MapGet("/", async (IDeliveryOrderQuery query, CancellationToken cancellationToken) =>
+            ApiResponses.Success(await query.ListDeliveryOrdersAsync(cancellationToken)));
+        deliveryOrders.MapGet("/barcode/{barcode}", async (string barcode, IDeliveryOrderQuery query, CancellationToken cancellationToken) =>
+        {
+            var result = await query.GetDeliveryOrderByBarcodeAsync(barcode, cancellationToken);
+            return result is null
+                ? ApiResponses.NotFound("delivery_barcode_not_found", "Delivery barcode was not found in DEMO-7 in-memory sample data.")
+                : ApiResponses.Success(result);
+        });
+        deliveryOrders.MapPost("/", () => ApiResponses.NotImplemented("delivery_orders", "create"));
+        deliveryOrders.MapPatch("/{id:guid}/status", () => ApiResponses.NotImplemented("delivery_orders", "update_status"));
 
-        app.MapGroup("/api/sales")
-            .MapGet("/", () => ApiResponses.NotImplemented("sales", "list"));
+        var sales = app.MapGroup("/api/sales");
+        sales.MapGet("/", () => ApiResponses.NotImplemented("sales", "list"));
+        sales.MapPost("/commit", () => ApiResponses.NotImplemented("sales", "commit"));
 
         app.MapGroup("/api/reports/cod")
-            .MapGet("/", () => ApiResponses.NotImplemented("reports.cod", "summary"));
+            .MapGet("/", async (ICodReportQuery query, CancellationToken cancellationToken) =>
+                ApiResponses.Success(await query.GetCodReportAsync(cancellationToken)));
 
         app.MapGroup("/api/audit")
-            .MapGet("/", () => ApiResponses.NotImplemented("audit", "list"));
+            .MapGet("/", async (IAuditSummaryQuery query, CancellationToken cancellationToken) =>
+                ApiResponses.Success(await query.ListAuditEventsAsync(cancellationToken)));
 
         return app;
     }

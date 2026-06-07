@@ -21,6 +21,7 @@ These tasks are urgent planning and pilot preparation items. Do not mark them co
 
 - Gate 0 - Scope Lock: completed for DEMO-7-G0+D1.
 - Gate 1 - Backend Contract Baseline: continued with D2 API surface placeholders and validation baseline.
+- Gate 1 - Read-only smoke baseline: continued with D3 in-memory query interfaces and GET smoke endpoints.
 - Gate 2 - Cloud-connected Demo Path.
 - Gate 3 - Windows Demo Shell Plan.
 - Gate 4 - Android Demo Shell Plan.
@@ -30,6 +31,7 @@ These tasks are urgent planning and pilot preparation items. Do not mark them co
 ### DEMO-7 Next Planning/Implementation Tasks
 
 - Review Gate 1 DTO/API contract and validation baseline with Noor + Ali.
+- Review D3 read-only smoke responses with Windows and Android planning needs.
 - Extend Gate 1 only after Noor approval for backend/API/database/business-rule decisions.
 - Select conceptual cloud-connected pilot data path without credentials.
 - Plan Windows WinUI shell screens without creating a project.
@@ -68,6 +70,15 @@ These tasks are urgent planning and pilot preparation items. Do not mark them co
 - Manual validation baseline added without external packages.
 - Validation covers product drafts, variants, images, locations, reservations, delivery orders/barcodes, sale drafts, shipments, and customers.
 - Full CRUD, inventory engine, sale commit, COD settlement, migrations, app projects, and cloud config remain postponed.
+
+### DEMO-7-D3 Read-only Smoke Baseline
+
+- Application read-only query interfaces added.
+- Infrastructure in-memory demo data provider added.
+- GET smoke endpoints return wrapped sample data for products, locations, inventory summary, shipments, reservations, customers, delivery orders, delivery barcode lookup, COD report, and audit.
+- Write routes remain Not Implemented.
+- Persistence remains in-memory demo data only.
+- No migrations, app projects, cloud credentials, or cloud config added.
 
 ## Temporary Pause
 

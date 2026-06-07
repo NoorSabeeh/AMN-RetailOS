@@ -1,8 +1,10 @@
 using AMN.RetailOS.Api.Endpoints;
+using AMN.RetailOS.Infrastructure.DemoData;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
+builder.Services.AddDemo7InMemoryQueries();
 
 var app = builder.Build();
 
