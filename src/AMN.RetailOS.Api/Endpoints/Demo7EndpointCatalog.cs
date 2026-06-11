@@ -7,6 +7,7 @@ public static class Demo7EndpointCatalog
         "/api/contracts/status",
         "/api/contracts/routes",
         "/api/products",
+        "/api/products/barcode/{barcode}",
         "/api/products/{id}",
         "/api/locations",
         "/api/inventory",

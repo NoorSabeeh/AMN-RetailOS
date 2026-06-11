@@ -350,6 +350,14 @@ Current D4 feedback alignment:
 - COD reports must support Iraqi merchant weekly cutoff planning, especially Thursday.
 - Android is active for DEMO-7; iPhone remains postponed.
 
+Current D5 barcode lookup baseline:
+
+- Product variant/shade barcode lookup is added as a read-only backend contract baseline.
+- Variant/Shade barcode remains primary for cosmetics flows.
+- Product-level barcode is optional/secondary and should require exact variant/shade selection before sale or reservation.
+- Delivery barcode remains order-level and is not a product/variant barcode.
+- Barcode scanning, camera/image barcode reading, barcode generation, sales, inventory writes, and reservation writes remain postponed.
+
 ### Gate 2 - Cloud-connected Demo Path
 
 Acceptance criteria:

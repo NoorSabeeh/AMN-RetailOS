@@ -28,7 +28,7 @@ The backend/core is the contract and business correctness center. Client-specifi
 Android is active in DEMO-7 scope. Android needs API support for:
 
 - product search,
-- variant/shade barcode lookup,
+- variant/shade barcode lookup through `GET /api/products/barcode/{barcode}`,
 - stock summary,
 - reservations,
 - delivery order status,
@@ -60,16 +60,18 @@ Responsibilities:
 - Assign categories, units, prices, and active status.
 - Support products with or without barcode.
 - Support variant/shade-specific barcode planning for cosmetics workflows.
+- Treat Variant/Shade barcode as the primary cosmetics lookup when present.
+- Treat product-level barcode as optional/secondary and require variant choice before sale/reservation when needed.
 
 Key operations:
 
 - `listProducts`
 - `searchProducts`
 - `getProduct`
+- `resolveProductBarcode` through `GET /api/products/barcode/{barcode}` for read-only DEMO-7 lookup
 - `createProduct`
 - `updateProduct`
 - `deactivateProduct`
-- `resolveVariantBarcode` future concept
 
 ## Barcode Service
 
@@ -78,6 +80,8 @@ Responsibilities:
 - Resolve barcode to product/unit.
 - Prevent ambiguous barcode assignments.
 - Support multiple barcodes per product.
+- Keep delivery company barcode separate from product/variant barcodes.
+- Keep camera/image barcode scanning as future client/device work; DEMO-7-D5 only adds backend read-only lookup.
 
 Key operations:
 

@@ -1,3 +1,5 @@
+using AMN.RetailOS.Application.Contracts.Inventory;
+
 namespace AMN.RetailOS.Application.Contracts.Products;
 
 public sealed record ProductSummaryDto(
@@ -43,7 +45,9 @@ public sealed record ProductVariantDto(
     string Name,
     string OptionName,
     string OptionValue,
+    string Sku,
     string SkuSuffix,
+    string Barcode,
     string Status);
 
 public sealed record ProductImageMetadataDto(
@@ -56,3 +60,15 @@ public sealed record ProductImageMetadataDto(
     bool IsPrimary,
     string Status);
 
+public sealed record ProductVariantBarcodeLookupResponseDto(
+    string Barcode,
+    string MatchType,
+    Guid? ProductId,
+    string? ProductName,
+    Guid? VariantId,
+    string? VariantName,
+    string? ShadeName,
+    string? Sku,
+    IReadOnlyList<ProductImageMetadataDto> Images,
+    IReadOnlyList<InventoryPositionSummaryDto> Inventory,
+    string? Warning);

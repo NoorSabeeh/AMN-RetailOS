@@ -23,6 +23,7 @@ These tasks are urgent planning and pilot preparation items. Do not mark them co
 - Gate 1 - Backend Contract Baseline: continued with D2 API surface placeholders and validation baseline.
 - Gate 1 - Read-only smoke baseline: continued with D3 in-memory query interfaces and GET smoke endpoints.
 - Gate 1 - Contract docs and feedback alignment: completed with D4 smoke verification, API contract export, Ali feedback, and Murtadha QA feedback.
+- Gate 1 - Product variant barcode lookup baseline: completed with D5 read-only lookup contract and sample provider route.
 - Gate 2 - Cloud-connected Demo Path.
 - Gate 3 - Windows Demo Shell Plan.
 - Gate 4 - Android Demo Shell Plan.
@@ -34,6 +35,7 @@ These tasks are urgent planning and pilot preparation items. Do not mark them co
 - Review Gate 1 DTO/API contract and validation baseline with Noor + Ali.
 - Review D3 read-only smoke responses with Windows and Android planning needs.
 - Review D4 API contract documentation with Windows and Android planning needs.
+- Review D5 product variant barcode lookup contract with Windows and Android planning needs.
 - Extend Gate 1 only after Noor approval for backend/API/database/business-rule decisions.
 - Select conceptual cloud-connected pilot data path without credentials.
 - Plan Windows WinUI shell screens without creating a project.
@@ -92,6 +94,15 @@ These tasks are urgent planning and pilot preparation items. Do not mark them co
 - iPhone remains postponed.
 - COD Thursday cutoff is documented as a future report contract need.
 - Excel import remains postponed and must follow Preview -> Mapping -> Row Validation -> Commit.
+
+### DEMO-7-D5 Product Variant Barcode Lookup Baseline
+
+- Product variant/shade barcode lookup contract added for read-only backend smoke use.
+- `GET /api/products/barcode/{barcode}` resolves safe sample variant/product barcode shapes.
+- Variant/Shade barcode remains primary for cosmetics.
+- Product-level barcode remains optional/secondary.
+- Delivery barcode remains order-level and separate from product/variant barcode lookup.
+- Barcode scanning/camera/image reading, barcode generation, sales, inventory writes, reservation writes, COD settlement, migrations, and app projects remain postponed.
 
 ## Temporary Pause
 

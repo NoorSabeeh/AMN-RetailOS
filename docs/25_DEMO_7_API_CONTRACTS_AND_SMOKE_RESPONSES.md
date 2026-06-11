@@ -2,13 +2,14 @@
 
 ## Status
 
-Phase: DEMO-7-D4 - Read-Only API Smoke Verification, Contract Docs, and Team Feedback Alignment.
+Phase: DEMO-7-D5 - Product Variant Barcode Contract And Read-Only Lookup Baseline.
 
 The current backend exposes read-only smoke endpoints backed by in-memory demo data. This is not production persistence and not full product behavior.
 
 Current API mode:
 
 - read-only smoke endpoints: available,
+- product variant barcode lookup: available as read-only baseline,
 - write operations: not implemented,
 - persistence: in-memory demo data,
 - database migrations: not added,
@@ -22,6 +23,7 @@ Verified read-only smoke endpoints:
 - `GET /api/contracts/status`
 - `GET /api/contracts/routes`
 - `GET /api/products`
+- `GET /api/products/barcode/{barcode}`
 - `GET /api/products/{id}`
 - `GET /api/locations`
 - `GET /api/inventory/summary`
@@ -127,6 +129,8 @@ Returns:
 Variant/Shade rule:
 
 - Cosmetics flows should treat variant/shade barcode as primary where a shade-specific barcode exists.
+- Product-level barcode may exist but is optional/secondary.
+- If a product-level barcode is matched, the client must ask the user to choose the exact variant/shade before cosmetics sale or reservation.
 - The general product remains the parent.
 - Shade/variant behavior must remain generic enough for future profiles such as clothing size/color or electronics options.
 
@@ -134,6 +138,32 @@ Image rule:
 
 - Current data uses placeholder image metadata only.
 - No image files or uploads are implemented.
+
+### Product Variant Barcode Lookup
+
+`GET /api/products/barcode/{barcode}`
+
+Returns a read-only lookup result for product/variant barcode resolution:
+
+- `barcode`
+- `matchType`: `variant_barcode` or `product_barcode`
+- `productId`
+- `productName`
+- `variantId`
+- `variantName`
+- `shadeName`
+- `sku`
+- `images`
+- `inventory`
+- `warning`
+
+Current rule:
+
+- Variant/Shade barcode is primary for cosmetics flows.
+- Product-level barcode is secondary and returns a warning when the exact variant/shade is not known.
+- Unknown product barcode returns `404` with platform-neutral `product_barcode_not_found` error.
+- Delivery company barcode is not resolved here; it belongs to `GET /api/delivery-orders/barcode/{barcode}`.
+- Barcode scanning from camera/image is future client/device work and is not implemented.
 
 ### Locations
 
@@ -232,6 +262,7 @@ Returns order-level delivery summaries:
 Delivery barcode rule:
 
 - Delivery company barcode belongs to the whole order, not to individual items.
+- Delivery barcode must not be treated as a product or variant barcode.
 
 ### Delivery Barcode Lookup
 
@@ -290,6 +321,7 @@ Android client planning needs:
 - reservations,
 - delivery order status,
 - delivery barcode lookup,
+- product variant barcode lookup,
 - COD summary,
 - manual fallback when barcode/image reading fails.
 
@@ -318,7 +350,8 @@ Windows must consume backend contracts and must not own business rules.
 - No cloud persistence.
 - No Excel import implementation.
 - No image upload implementation.
-- No barcode scanning implementation.
+- No barcode scanning/camera/image reading implementation.
+- No product barcode generation.
 - No sale commit.
 - No reservation write.
 - No COD settlement.

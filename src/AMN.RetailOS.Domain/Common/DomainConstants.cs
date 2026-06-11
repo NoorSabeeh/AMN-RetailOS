@@ -73,6 +73,12 @@ public static class DeliveryOrderStatuses
     public const string Canceled = "canceled";
 }
 
+public static class ProductBarcodeMatchTypes
+{
+    public const string VariantBarcode = "variant_barcode";
+    public const string ProductBarcode = "product_barcode";
+}
+
 public static class CodCollectionStatuses
 {
     public const string Pending = "pending";

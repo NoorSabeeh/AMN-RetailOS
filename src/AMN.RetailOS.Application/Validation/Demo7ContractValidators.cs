@@ -103,6 +103,15 @@ public static class Demo7ContractValidators
     {
         var errors = new List<ValidationErrorDto>();
         AddRequired(errors, "Barcode", barcode);
+        AddMaxLength(errors, "Barcode", barcode, 64);
+        return new ValidationResult(errors);
+    }
+
+    public static ValidationResult ValidateBarcodeLookup(string barcode)
+    {
+        var errors = new List<ValidationErrorDto>();
+        AddRequired(errors, "Barcode", barcode);
+        AddMaxLength(errors, "Barcode", barcode, 64);
         return new ValidationResult(errors);
     }
 
@@ -184,6 +193,14 @@ public static class Demo7ContractValidators
         if (!knownValues.Contains(value))
         {
             errors.Add(new ValidationErrorDto(field, "unknown_value", $"{field} is not a known value."));
+        }
+    }
+
+    private static void AddMaxLength(List<ValidationErrorDto> errors, string field, string value, int maxLength)
+    {
+        if (value.Length > maxLength)
+        {
+            errors.Add(new ValidationErrorDto(field, "max_length", $"{field} must be {maxLength} characters or fewer."));
         }
     }
 }

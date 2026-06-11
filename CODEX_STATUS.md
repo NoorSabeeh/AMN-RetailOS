@@ -6,7 +6,7 @@ Project Foundation Planning
 
 ## Current Active Coordination Phase
 
-DEMO-7-D4 - Read-Only API Smoke Verification, Contract Docs, and Team Feedback Alignment
+DEMO-7-D5 - Product Variant Barcode Contract And Read-Only Lookup Baseline
 
 ## Current Main Product Phase
 
@@ -91,6 +91,17 @@ DEMO-7-D4 status:
 - Restore/build/test validation passes for the D4 baseline.
 - B1 remains not complete and B1-R1.4 remains paused temporarily.
 
+DEMO-7-D5 status:
+
+- Product variant/shade barcode lookup baseline is added as a read-only backend contract.
+- `GET /api/products/barcode/{barcode}` resolves safe in-memory sample variant/product barcode shapes for future Windows and Android clients.
+- Variant/Shade barcode remains primary for cosmetics flows; product-level barcode is optional/secondary.
+- Delivery barcode lookup remains separate and order-level through `GET /api/delivery-orders/barcode/{barcode}`.
+- Barcode scanning/camera/image reading, barcode generation, sale behavior, inventory writes, reservation writes, and COD settlement are not implemented.
+- No write behavior, business logic, migrations, app projects, cloud credentials/config, or Supabase changes are added.
+- Restore/build/test validation passes for the D5 baseline with 38 tests.
+- B1 remains not complete and B1-R1.4 remains paused temporarily.
+
 ## Internal Project Portal
 
 `project_portal/` has been upgraded as AMN RetailOS Command Center v2.1, an internal team/project tracking UI only.
@@ -165,6 +176,7 @@ Documentation and planning foundation:
 - DEMO-7-D2 API surface and validation baseline
 - DEMO-7-D3 in-memory read-only smoke endpoint baseline
 - DEMO-7-D4 contract documentation and team feedback alignment
+- DEMO-7-D5 product variant barcode lookup baseline
 - File submission rules for Codex review and safe integration
 
 ## Next Recommended Phase

@@ -1,5 +1,6 @@
 using AMN.RetailOS.Api.Responses;
 using AMN.RetailOS.Application.Interfaces;
+using AMN.RetailOS.Application.Validation;
 
 namespace AMN.RetailOS.Api.Endpoints;
 
@@ -10,10 +11,13 @@ public static class Demo7ContractEndpoints
         app.MapGet("/api/contracts/status", () => Results.Ok(new
         {
             product = "AMN RetailOS",
-            phase = "DEMO-7-D3",
-            contractVersion = "demo-7-d3",
-            implementationStatus = "read_only_smoke_endpoints_with_in_memory_demo_data",
+            phase = "DEMO-7-D5",
+            contractVersion = "demo-7-d5",
+            implementationStatus = "read_only_smoke_endpoints_with_product_variant_barcode_lookup",
             readOnlySmokeEndpointsAvailable = true,
+            productVariantBarcodeLookupAvailable = true,
+            deliveryBarcodeScope = "order_level",
+            barcodeScanningImplemented = false,
             writeOperationsImplemented = false,
             persistenceMode = "in_memory_demo_data",
             databaseMigrationsAdded = false,
@@ -27,10 +31,13 @@ public static class Demo7ContractEndpoints
 
         app.MapGet("/api/contracts/routes", () => Results.Ok(new
         {
-            phase = "DEMO-7-D3",
-            note = "GET routes are read-only smoke endpoints backed by in-memory demo data. Write operations are not implemented.",
+            phase = "DEMO-7-D5",
+            note = "GET routes are read-only smoke endpoints backed by in-memory demo data. Product variant barcode lookup is read-only. Delivery barcode remains order-level. Write operations are not implemented.",
             androidScope = "Android is active for DEMO-7 planning.",
             iphoneScope = "iPhone is postponed.",
+            productBarcodeScope = "Variant/Shade barcode is primary for cosmetics lookup; product-level barcode is optional/secondary.",
+            deliveryBarcodeScope = "Delivery barcode belongs to the whole delivery order.",
+            barcodeScanningStatus = "Camera/image barcode scanning is not implemented.",
             codCutoffPlanning = "Future COD report contract should support cutOffDay=Thursday.",
             excelImportStatus = "Excel import is not implemented.",
             routeGroups = Demo7EndpointCatalog.RouteGroups
@@ -39,6 +46,19 @@ public static class Demo7ContractEndpoints
         var products = app.MapGroup("/api/products");
         products.MapGet("/", async (IProductCatalogQuery query, CancellationToken cancellationToken) =>
             ApiResponses.Success(await query.ListProductsAsync(cancellationToken)));
+        products.MapGet("/barcode/{barcode}", async (string barcode, IProductCatalogQuery query, CancellationToken cancellationToken) =>
+        {
+            var validation = Demo7ContractValidators.ValidateBarcodeLookup(barcode);
+            if (!validation.IsValid)
+            {
+                return ApiResponses.ValidationFailed(validation.Errors);
+            }
+
+            var result = await query.GetProductVariantByBarcodeAsync(barcode, cancellationToken);
+            return result is null
+                ? ApiResponses.NotFound("product_barcode_not_found", "Product variant barcode was not found in DEMO-7 in-memory sample data.")
+                : ApiResponses.Success(result);
+        });
         products.MapGet("/{id:guid}", async (Guid id, IProductCatalogQuery query, CancellationToken cancellationToken) =>
         {
             var product = await query.GetProductAsync(id, cancellationToken);

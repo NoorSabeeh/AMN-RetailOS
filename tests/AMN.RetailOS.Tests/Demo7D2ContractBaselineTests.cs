@@ -112,7 +112,9 @@ public sealed class Demo7D2ContractBaselineTests
             Name: "Shade 01",
             OptionName: "shade",
             OptionValue: "01",
+            Sku: "COS-001-01",
             SkuSuffix: "01",
+            Barcode: "DEMO-COS-001-01",
             Status: EntityStatuses.Active));
 
         var image = Demo7ContractValidators.Validate(new ProductImageMetadataDto(

@@ -15,6 +15,8 @@ public interface IProductCatalogQuery
     Task<IReadOnlyList<ProductSummaryDto>> ListProductsAsync(CancellationToken cancellationToken = default);
 
     Task<ProductDetailDto?> GetProductAsync(Guid productId, CancellationToken cancellationToken = default);
+
+    Task<ProductVariantBarcodeLookupResponseDto?> GetProductVariantByBarcodeAsync(string barcode, CancellationToken cancellationToken = default);
 }
 
 public interface ILocationQuery

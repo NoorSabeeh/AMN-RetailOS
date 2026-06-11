@@ -41,7 +41,9 @@ public sealed class ProductVariant : Entity
     public string Name { get; set; } = string.Empty;
     public string OptionName { get; set; } = "shade";
     public string OptionValue { get; set; } = string.Empty;
+    public string Sku { get; set; } = string.Empty;
     public string SkuSuffix { get; set; } = string.Empty;
+    public string Barcode { get; set; } = string.Empty;
     public string Status { get; set; } = EntityStatuses.Active;
     public ICollection<ProductImage> Images { get; set; } = new List<ProductImage>();
 }

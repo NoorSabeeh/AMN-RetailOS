@@ -79,9 +79,12 @@ iPhone remains postponed. Do not treat iPhone, App Store, TestFlight, or iOS sig
 ### Scenario 22 - Variant/Shade Barcode Correctness
 
 - Scan or enter a shade-specific barcode.
-- Expected: backend resolves the barcode to the correct ProductVariant/Shade where a shade barcode exists.
+- Expected: backend read-only lookup resolves the barcode to the correct ProductVariant/Shade where a shade barcode exists.
 - Check that the general product remains the parent and the selected shade is visible.
+- Confirm product-level barcode is secondary and requires exact variant/shade selection before sale or reservation.
+- Confirm delivery barcode does not resolve as a product/variant barcode.
 - Confirm manual fallback exists when barcode lookup fails.
+- Current status: backend lookup only; camera/image scanning is not implemented.
 
 ### Scenario 23 - Instagram Delivery Order + Delivery Barcode + COD Flow
 

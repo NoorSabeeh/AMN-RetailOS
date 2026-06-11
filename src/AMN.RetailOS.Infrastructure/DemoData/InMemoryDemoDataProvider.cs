@@ -46,12 +46,16 @@ public sealed class InMemoryDemoDataProvider :
     public static readonly Guid ProductLipstickId = Guid.Parse("22222222-2222-2222-2222-222222222222");
     public static readonly Guid ProductSerumId = Guid.Parse("33333333-3333-3333-3333-333333333333");
     public static readonly Guid VariantRoseId = Guid.Parse("44444444-4444-4444-4444-444444444444");
+    public static readonly Guid VariantNudeId = Guid.Parse("45454545-4545-4545-4545-454545454545");
     public static readonly Guid WarehouseLocationId = Guid.Parse("55555555-5555-5555-5555-555555555555");
     public static readonly Guid DisplayLocationId = Guid.Parse("66666666-6666-6666-6666-666666666666");
     public static readonly Guid ShipmentId = Guid.Parse("77777777-7777-7777-7777-777777777777");
     public static readonly Guid CustomerId = Guid.Parse("88888888-8888-8888-8888-888888888888");
     public static readonly Guid ReservationId = Guid.Parse("99999999-9999-9999-9999-999999999999");
     public static readonly Guid DeliveryOrderId = Guid.Parse("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa");
+    public const string SampleProductBarcode = "DEMO-COS-LIP-PRODUCT";
+    public const string SampleVariantRoseBarcode = "DEMO-COS-LIP-ROSE-001";
+    public const string SampleVariantNudeBarcode = "DEMO-COS-LIP-NUDE-001";
     public const string SampleDeliveryBarcode = "DEMO-DEL-0001";
 
     private static readonly ProductDetailDto LipstickDetail = new(
@@ -71,7 +75,19 @@ public sealed class InMemoryDemoDataProvider :
                 Name: "Rose Shade",
                 OptionName: "shade",
                 OptionValue: "rose",
+                Sku: "DEMO-COS-LIP-001-ROSE",
                 SkuSuffix: "ROSE",
+                Barcode: SampleVariantRoseBarcode,
+                Status: EntityStatuses.Active),
+            new ProductVariantDto(
+                Id: VariantNudeId,
+                ProductId: ProductLipstickId,
+                Name: "Nude Shade",
+                OptionName: "shade",
+                OptionValue: "nude",
+                Sku: "DEMO-COS-LIP-001-NUDE",
+                SkuSuffix: "NUDE",
+                Barcode: SampleVariantNudeBarcode,
                 Status: EntityStatuses.Active)
         ],
         Images:
@@ -84,6 +100,15 @@ public sealed class InMemoryDemoDataProvider :
                 ContentType: "image/jpeg",
                 StoragePath: "demo/products/demo-lip-color-rose.jpg",
                 IsPrimary: true,
+                Status: EntityStatuses.Active),
+            new ProductImageMetadataDto(
+                Id: Guid.Parse("bcbcbcbc-bcbc-bcbc-bcbc-bcbcbcbcbcbc"),
+                ProductId: ProductLipstickId,
+                ProductVariantId: VariantNudeId,
+                FileName: "demo-lip-color-nude.jpg",
+                ContentType: "image/jpeg",
+                StoragePath: "demo/products/demo-lip-color-nude.jpg",
+                IsPrimary: false,
                 Status: EntityStatuses.Active)
         ]);
 
@@ -122,6 +147,8 @@ public sealed class InMemoryDemoDataProvider :
     [
         new(ProductLipstickId, VariantRoseId, WarehouseLocationId, Guid.Parse("dddddddd-dddd-dddd-dddd-dddddddddddd"), 48, DateOnly.FromDateTime(DateTime.UtcNow.Date.AddMonths(18))),
         new(ProductLipstickId, VariantRoseId, DisplayLocationId, Guid.Parse("eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee"), 8, DateOnly.FromDateTime(DateTime.UtcNow.Date.AddMonths(18))),
+        new(ProductLipstickId, VariantNudeId, WarehouseLocationId, Guid.Parse("abababab-abab-abab-abab-abababababab"), 36, DateOnly.FromDateTime(DateTime.UtcNow.Date.AddMonths(18))),
+        new(ProductLipstickId, VariantNudeId, DisplayLocationId, Guid.Parse("acacacac-acac-acac-acac-acacacacacac"), 6, DateOnly.FromDateTime(DateTime.UtcNow.Date.AddMonths(18))),
         new(ProductSerumId, null, WarehouseLocationId, Guid.Parse("ffffffff-ffff-ffff-ffff-ffffffffffff"), 24, DateOnly.FromDateTime(DateTime.UtcNow.Date.AddMonths(12)))
     ];
 
@@ -163,6 +190,57 @@ public sealed class InMemoryDemoDataProvider :
     public Task<ProductDetailDto?> GetProductAsync(Guid productId, CancellationToken cancellationToken = default)
     {
         return Task.FromResult(ProductDetails.FirstOrDefault(product => product.Id == productId));
+    }
+
+    public Task<ProductVariantBarcodeLookupResponseDto?> GetProductVariantByBarcodeAsync(string barcode, CancellationToken cancellationToken = default)
+    {
+        if (string.IsNullOrWhiteSpace(barcode) ||
+            string.Equals(barcode, SampleDeliveryBarcode, StringComparison.OrdinalIgnoreCase))
+        {
+            return Task.FromResult<ProductVariantBarcodeLookupResponseDto?>(null);
+        }
+
+        var trimmedBarcode = barcode.Trim();
+        foreach (var product in ProductDetails)
+        {
+            var variant = product.Variants.FirstOrDefault(candidate =>
+                string.Equals(candidate.Barcode, trimmedBarcode, StringComparison.OrdinalIgnoreCase));
+
+            if (variant is not null)
+            {
+                return Task.FromResult<ProductVariantBarcodeLookupResponseDto?>(new ProductVariantBarcodeLookupResponseDto(
+                    Barcode: variant.Barcode,
+                    MatchType: ProductBarcodeMatchTypes.VariantBarcode,
+                    ProductId: product.Id,
+                    ProductName: product.Name,
+                    VariantId: variant.Id,
+                    VariantName: variant.Name,
+                    ShadeName: variant.OptionValue,
+                    Sku: variant.Sku,
+                    Images: product.Images.Where(image => image.ProductVariantId == variant.Id || image.ProductVariantId is null).ToArray(),
+                    Inventory: Inventory.Where(position => position.ProductId == product.Id && position.ProductVariantId == variant.Id).ToArray(),
+                    Warning: null));
+            }
+
+            if (product.Id == ProductLipstickId &&
+                string.Equals(trimmedBarcode, SampleProductBarcode, StringComparison.OrdinalIgnoreCase))
+            {
+                return Task.FromResult<ProductVariantBarcodeLookupResponseDto?>(new ProductVariantBarcodeLookupResponseDto(
+                    Barcode: SampleProductBarcode,
+                    MatchType: ProductBarcodeMatchTypes.ProductBarcode,
+                    ProductId: product.Id,
+                    ProductName: product.Name,
+                    VariantId: null,
+                    VariantName: null,
+                    ShadeName: null,
+                    Sku: product.Sku,
+                    Images: product.Images.Where(image => image.ProductVariantId is null).ToArray(),
+                    Inventory: Inventory.Where(position => position.ProductId == product.Id).ToArray(),
+                    Warning: "Product-level barcode matched. Choose the exact variant/shade before cosmetics sale or reservation."));
+            }
+        }
+
+        return Task.FromResult<ProductVariantBarcodeLookupResponseDto?>(null);
     }
 
     public Task<IReadOnlyList<LocationSummaryDto>> ListLocationsAsync(CancellationToken cancellationToken = default)
